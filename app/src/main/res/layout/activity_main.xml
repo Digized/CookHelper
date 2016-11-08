@@ -51,5 +51,17 @@
                 android:id="@+id/spinner2"
                 android:layout_weight="1" />
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <ListView
+                android:layout_width="283dp"
+                android:layout_height="261dp"
+                android:id="@+id/ListofIngridients" />
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
