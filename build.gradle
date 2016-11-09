@@ -6,6 +6,7 @@ buildscript {
         support_library_version = '24.2.1'
         build_tools_version = '25.0.0'
         butterknife_version = '8.4.0'
+        dagger_version = '2.7'
     }
 
     repositories {

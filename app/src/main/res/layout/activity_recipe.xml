@@ -44,7 +44,7 @@
                         android:text="Edit"
                         android:layout_width="72dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/edit-button" />
+                        android:id="@+id/edit_button" />
                 </LinearLayout>
 
                 <TextView
@@ -62,7 +62,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:id="@+id/recipeStats-textView"
+                        android:id="@+id/recipeStats_textView"
                         android:text="CookTime: 5 min \nCalories: 210"
                         android:lines="3" />
 
@@ -70,7 +70,7 @@
                         android:text="YT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/openyoutube-button" />
+                        android:id="@+id/openyoutube_button" />
 
                 </LinearLayout>
 
@@ -114,15 +114,14 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:id="@+id/20" />
+            android:layout_height="10dp" />
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Steps"
-            android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+            android:textAppearance="?android:textAppearanceMedium" />
 
         <TextView
             android:text="Put ketchup and stir for 5 min,\n then place a new food or something"
