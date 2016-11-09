@@ -16,3 +16,5 @@ Call getComponent().inject(this);
         getComponent().inject(this);
     }
 ```
+
+NOTE: If DaggerApplicationComponent is not found you must do Build -> Rebuild Project
