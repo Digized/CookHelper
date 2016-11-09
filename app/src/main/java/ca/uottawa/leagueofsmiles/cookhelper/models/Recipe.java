@@ -21,7 +21,8 @@ public class Recipe implements Serializable {
    private String steps;
 
 
-    public Recipe( String name, int calories, int timeToPrepare, String[] ingredients, String steps){
+    public Recipe(int recipeId, String name, int calories, int timeToPrepare, String[] ingredients, String steps){
+        this.recipeId = recipeId;
         this.name=name;
         this.calories=calories;
         this.timeToPrepare=timeToPrepare;
@@ -74,6 +75,11 @@ public class Recipe implements Serializable {
         this.ingredients = ingredients;
     }
 
+    public int getRecipeId() {
+        return recipeId;
+    }
 
-
+    public void setRecipeId(int recipeId) {
+        this.recipeId = recipeId;
+    }
 }

@@ -14,4 +14,6 @@ public interface Repository {
     void saveRecipe(Recipe recipe);
 
     Recipe getRecipe(int recipeId);
+
+    void deleteRecipe(int recipedId);
 }
