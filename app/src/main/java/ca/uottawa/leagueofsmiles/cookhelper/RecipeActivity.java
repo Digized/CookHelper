@@ -1,13 +1,12 @@
 package ca.uottawa.leagueofsmiles.cookhelper;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import ca.uottawa.leagueofsmiles.cookhelper.models.Recipe;
 
-public class RecipeActivity extends AppCompatActivity {
+public class RecipeActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,19 +1,21 @@
 package ca.uottawa.leagueofsmiles.cookhelper;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-import ca.uottawa.leagueofsmiles.cookhelper.data.MockRepository;
+import javax.inject.Inject;
+
 import ca.uottawa.leagueofsmiles.cookhelper.data.Repository;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
+    @Inject
     Repository mRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRepository = new MockRepository();//Update when real repository implemented
+        getComponent().inject(this);
     }
 }
