@@ -24,8 +24,11 @@ NOTE: If DaggerApplicationComponent is not found you must do Build -> Rebuild Pr
 
 Used to load and save images (Recipe imagePath is from this)
 
+```java
 ImageLoader.loadImageOnto(imagePath, R.drawable.empty_image)
+
 ImageLoader.saveImage(context, Bitmap, recipeId) //Returns the imagePath
+```java
 
 ## Screenshots
 <img src="screenshots/main_page.png" width="49%" />
