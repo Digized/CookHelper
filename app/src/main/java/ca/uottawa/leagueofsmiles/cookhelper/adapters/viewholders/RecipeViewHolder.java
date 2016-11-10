@@ -9,6 +9,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ca.uottawa.leagueofsmiles.cookhelper.R;
 import ca.uottawa.leagueofsmiles.cookhelper.models.Recipe;
+import ca.uottawa.leagueofsmiles.cookhelper.utils.ImageLoader;
 
 /**
  * Created by Dan on 11/9/2016.
@@ -28,6 +29,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Recipe recipe) {
+        ImageLoader.loadImageOnto(recipe.getImagePath(), R.drawable.empty_image, imgRecipe);
         txtRecipeName.setText(recipe.getName());
     }
 }

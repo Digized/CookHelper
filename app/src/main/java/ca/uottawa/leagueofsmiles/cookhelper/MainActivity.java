@@ -57,7 +57,7 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onRecipeClicked(Recipe recipe, RecipeViewHolder viewHolder, int position) {
                         Intent intent = new Intent(getContext(), RecipeActivity.class);
-                        intent.putExtra(Constants.RECIPE_ID, recipe.getRecipeId());
+                        intent.putExtra(Constants.RECIPE_ID, recipe.getId());
                         startActivity(intent);
                     }
 
@@ -69,7 +69,8 @@ public class MainActivity extends BaseActivity {
                                 .setPositiveButton(dialog_delete_confirm, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        mRepository.deleteRecipe(recipe.getRecipeId());
+                                        mRepository.deleteRecipe(recipe.getId());
+                                        updateRecipeList();
                                     }
                                 })
                                 .setNegativeButton(android.R.string.cancel, null)
@@ -77,7 +78,15 @@ public class MainActivity extends BaseActivity {
                     }
                 });
         recipeList.setAdapter(recipeAdapter);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateRecipeList();
+    }
+
+    private void updateRecipeList() {
         recipeAdapter.setRecipes(mRepository.getAllRecipes());
     }
 }
