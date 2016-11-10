@@ -13,5 +13,7 @@ public interface Repository {
 
     void saveRecipe(Recipe recipe);
 
-    Recipe getRecipe(int recipeId);
+    Recipe getRecipe(long recipeId);
+
+    void deleteRecipe(long recipedId);
 }

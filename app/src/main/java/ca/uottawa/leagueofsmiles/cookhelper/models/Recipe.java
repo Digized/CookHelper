@@ -1,5 +1,7 @@
 package ca.uottawa.leagueofsmiles.cookhelper.models;
 
+import com.orm.dsl.Table;
+
 import java.io.Serializable;
 
 /**
@@ -9,11 +11,11 @@ import java.io.Serializable;
 /**
  * Modified by Zuraiz on 11/9/2016
  */
-//TODO add all the properties
+@Table
 public class Recipe implements Serializable {
-    int recipeId;
+    private Long id;
 
-
+    private String imagePath;
     private String name;
     private int calories;
     private int timeToPrepare; //in minutes
@@ -21,7 +23,8 @@ public class Recipe implements Serializable {
    private String steps;
 
 
-    public Recipe( String name, int calories, int timeToPrepare, String[] ingredients, String steps){
+    public Recipe(long recipeId, String name, int calories, int timeToPrepare, String[] ingredients, String steps){
+        this.id = recipeId;
         this.name=name;
         this.calories=calories;
         this.timeToPrepare=timeToPrepare;
@@ -74,6 +77,19 @@ public class Recipe implements Serializable {
         this.ingredients = ingredients;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public String getImagePath() {
+        return imagePath;
+    }
 
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public void setRecipeId(long recipeId) {
+        this.id = recipeId;
+    }
 }
