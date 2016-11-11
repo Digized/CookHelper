@@ -4,6 +4,8 @@ import com.orm.dsl.Table;
 
 import java.io.Serializable;
 
+import ca.uottawa.leagueofsmiles.cookhelper.Constants;
+
 /**
  * Created by Dan on 11/8/2016.
  */
@@ -11,18 +13,33 @@ import java.io.Serializable;
 /**
  * Modified by Zuraiz on 11/9/2016
  */
-@Table
-public class Recipe implements Serializable {
+
+public class Recipe {
     private Long id;
 
     private String imagePath;
     private String name;
     private int calories;
     private int timeToPrepare; //in minutes
-   private String[] ingredients;
-   private String steps;
 
 
+
+    private int category;
+    private int type;
+    private String[] ingredients;
+    private String steps;
+
+
+    public Recipe(long recipeId, String name, int calories, int timeToPrepare, String[] ingredients, String steps, int category,int type){
+        this.id = recipeId;
+        this.name=name;
+        this.calories=calories;
+        this.timeToPrepare=timeToPrepare;
+        this.ingredients=ingredients;
+        this.steps=steps;
+        this.category=category;
+        this.type=type;
+    }
     public Recipe(long recipeId, String name, int calories, int timeToPrepare, String[] ingredients, String steps){
         this.id = recipeId;
         this.name=name;
@@ -30,8 +47,9 @@ public class Recipe implements Serializable {
         this.timeToPrepare=timeToPrepare;
         this.ingredients=ingredients;
         this.steps=steps;
+        this.category= Constants.CATEGORY_AMERICAN;
+        this.type=Constants.TYPE_MEAL;
     }
-
 
     public String getSteps() {
         return steps;
@@ -67,8 +85,8 @@ public class Recipe implements Serializable {
 
     public String getIngredients() {
         String s="";
-        for (String ingredient : ingredients) {
-            s = s + ingredient + "\n";
+        for (int i=0;i<ingredients.length;i++) {
+            s = s +(i+1)+") "+ingredients[i] + "\n";
         }
         return s;
     }
@@ -92,4 +110,12 @@ public class Recipe implements Serializable {
     public void setRecipeId(long recipeId) {
         this.id = recipeId;
     }
+
+    public int getCategory() {return category;}
+
+    public void setCategory(int category) {this.category = category; }
+
+    public int getType() { return type; }
+
+    public void setType(int type) { this.type = type; }
 }

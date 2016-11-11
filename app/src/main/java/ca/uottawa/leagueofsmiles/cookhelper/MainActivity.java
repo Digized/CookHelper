@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -41,6 +42,9 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
         ButterKnife.bind(this);
         getComponent().inject(this);
         setTitle(main_screen_title);
@@ -56,7 +60,7 @@ public class MainActivity extends BaseActivity {
                 new RecipeAdapterClickListener() {
                     @Override
                     public void onRecipeClicked(Recipe recipe, RecipeViewHolder viewHolder, int position) {
-                        Intent intent = new Intent(getContext(), RecipeActivity.class);
+                        Intent intent = new Intent(getContext(), ViewRecipeActivity.class);
                         intent.putExtra(Constants.RECIPE_ID, recipe.getId());
                         startActivity(intent);
                     }

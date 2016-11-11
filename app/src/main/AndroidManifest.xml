@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecipeActivity" />
+        <activity android:name=".ViewRecipeActivity" />
         <activity android:name=".AddRecipeActivity"></activity>
     </application>
 
