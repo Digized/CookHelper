@@ -10,145 +10,131 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.uottawa.leagueofsmiles.cookhelper.AddRecipeActivity">
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:baselineAligned="false"
-            android:weightSum="1"
-            android:layout_height="140dp">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_height="wrap_content"
-                android:layout_width="225dp">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:orientation="horizontal"
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:ems="10"
+                    android:id="@+id/editRecipeTitle"
+                    android:hint="Recipe Title" />
+
+                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editPrepTime"
+                    android:hint="Preperation Time" />
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:id="@+id/editRecipeTitle"
-                        android:contentDescription="Recipe Name"
-                        android:layout_height="wrap_content"
-                        android:hint="Recipe Name" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
+                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="71dp">
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editCookTime"
+                    android:hint="Cooking TIme" />
 
-                    <EditText
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:ems="10"
-                        android:id="@+id/editCookTime"
-                        android:hint="Cooking Time" />
+                        android:layout_height="match_parent" >
 
-                    <EditText
+                        <TextView
+                            android:text="Category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <Spinner
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinner3"
+                            android:layout_width="150dp" />
+                    </TableRow>
+
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:ems="10"
-                        android:id="@+id/editText6" />
+                        android:layout_height="match_parent" >
 
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinner" />
+                        <TextView
+                            android:text="Type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinner2" />
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/spinner4" />
+                    </TableRow>
 
-                </LinearLayout>
+                </TableLayout>
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/recipeIcon"
-                android:layout_width="125dp"
+            <ImageButton
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.97"
-                app:srcCompat="@drawable/empty_image" />
-
-
+                app:srcCompat="@drawable/empty_image"
+                android:id="@+id/btnImageIcon" />
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="140dp">
+            android:layout_height="125dp">
 
-            <Space
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="20dp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-            <TextView
-                android:text="Ingredients"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                android:layout_height="wrap_content" />
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <LinearLayout
+                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:layout_height="match_parent"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/editIngredients"
+                    android:singleLine="false"
+                    android:hint="Ingredients" />
 
-                    <TextView
-                        android:text="Tomato\nPotato\nCheese\nGarlic\nPasta\nOlives"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ingredientsbox"
-                        android:layout_weight="1" />
-                </LinearLayout>
-            </ScrollView>
+            </LinearLayout>
+        </ScrollView>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="match_parent">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <TextView
-                android:text="TextView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Steps"
-                android:textAppearance="?android:textAppearanceMedium" />
+                android:orientation="vertical" >
 
-            <TextView
-                android:text="Put ketchup and stir for 5 min,\n then place a new food or something"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/stepsbox" />
-        </LinearLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text|textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/editSteps"
+                    android:singleLine="false"
+                    android:hint="Steps" />
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
-
 </RelativeLayout>

@@ -46,7 +46,7 @@ public class ViewRecipeActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.add_recipe_action_overflow,menu);
+        inflater.inflate(R.menu.view_recipe_action_overflow,menu);
         return true;
     }
     @Override

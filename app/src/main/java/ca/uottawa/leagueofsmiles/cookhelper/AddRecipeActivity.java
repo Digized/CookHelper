@@ -2,7 +2,9 @@ package ca.uottawa.leagueofsmiles.cookhelper;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import javax.inject.Inject;
 
@@ -21,8 +23,6 @@ public class AddRecipeActivity extends BaseActivity {
         setContentView(R.layout.activity_add_recipe);
 
         ButterKnife.bind(this);
-
-
 
     }
 
