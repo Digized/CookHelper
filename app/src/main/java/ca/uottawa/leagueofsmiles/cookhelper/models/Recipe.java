@@ -1,5 +1,7 @@
 package ca.uottawa.leagueofsmiles.cookhelper.models;
 
+import com.orm.dsl.Table;
+
 import ca.uottawa.leagueofsmiles.cookhelper.Constants;
 
 /**
@@ -9,7 +11,7 @@ import ca.uottawa.leagueofsmiles.cookhelper.Constants;
 /**
  * Modified by Zuraiz on 11/9/2016
  */
-
+@Table
 public class Recipe {
     private Long id;
 
