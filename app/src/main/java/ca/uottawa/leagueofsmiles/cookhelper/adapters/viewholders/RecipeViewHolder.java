@@ -30,6 +30,6 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(Recipe recipe) {
         ImageLoader.loadImageOnto(recipe.getImagePath(), R.drawable.empty_image, imgRecipe);
-        txtRecipeName.setText(recipe.getName());
+        txtRecipeName.setText(recipe.getTitle());
     }
 }

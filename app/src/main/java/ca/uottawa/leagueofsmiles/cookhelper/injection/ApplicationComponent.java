@@ -1,5 +1,6 @@
 package ca.uottawa.leagueofsmiles.cookhelper.injection;
 
+import ca.uottawa.leagueofsmiles.cookhelper.AddRecipeActivity;
 import ca.uottawa.leagueofsmiles.cookhelper.MainActivity;
 import ca.uottawa.leagueofsmiles.cookhelper.ViewRecipeActivity;
 import dagger.Component;
@@ -11,4 +12,5 @@ import dagger.Component;
 public interface ApplicationComponent {
     void inject(MainActivity activity);
     void inject(ViewRecipeActivity viewRecipeActivity);
+    void inject(AddRecipeActivity addRecipeActivity);
 }

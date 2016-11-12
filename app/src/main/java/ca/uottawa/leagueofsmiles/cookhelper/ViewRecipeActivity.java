@@ -19,6 +19,8 @@ public class ViewRecipeActivity extends BaseActivity {
     @Inject
     Repository mRepository;
 
+    private long recipeID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,20 +30,8 @@ public class ViewRecipeActivity extends BaseActivity {
         getComponent().inject(this);
 
         Intent intent= getIntent();
-        long recipeID= intent.getLongExtra(Constants.RECIPE_ID,0L);
-        Recipe recipe=mRepository.getRecipe(recipeID);
-
-        TextView title=(TextView) findViewById(R.id.recipeTitle);
-        TextView recipeStats=(TextView) findViewById(R.id.recipeStats_textView);
-        TextView ingredients=(TextView) findViewById(R.id.ingredientsbox);
-        TextView steps=(TextView) findViewById(R.id.stepsbox);
-
-        //TODO image functionality
-
-        title.setText(recipe.getName());
-        recipeStats.setText("Prepare Time: "+recipe.getTimeToPrepare()+" minutes\nCalories: "+recipe.getCalories()); //will fix this later
-        ingredients.setText(recipe.getIngredients());
-        steps.setText(recipe.getSteps());
+        recipeID= intent.getLongExtra(Constants.RECIPE_ID,0L);
+        updateView();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -52,6 +42,36 @@ public class ViewRecipeActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+
+        switch (item.getItemId()){
+            case R.id.edit:
+                Intent intent=new Intent(getContext(),AddRecipeActivity.class);
+                intent.putExtra(Constants.RECIPE_ID,recipeID);
+                startActivity(intent);
+        }
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateView();
+
+    }
+
+    private void updateView(){
+        Recipe recipe=mRepository.getRecipe(recipeID);
+
+        TextView title=(TextView) findViewById(R.id.recipeTitle);
+        TextView recipeStats=(TextView) findViewById(R.id.recipeStats_textView);
+        TextView ingredients=(TextView) findViewById(R.id.ingredientsbox);
+        TextView steps=(TextView) findViewById(R.id.stepsbox);
+
+        //TODO image functionality
+
+        title.setText(recipe.getTitle());
+        recipeStats.setText("Prepare Time: "+recipe.getCookTime()+" minutes\nCalories: "+recipe.getCalories()); //will fix this later
+        ingredients.setText(recipe.getIngredients());
+        steps.setText(recipe.getSteps());
     }
 }

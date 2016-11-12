@@ -23,7 +23,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewRecipeActivity" />
-        <activity android:name=".AddRecipeActivity"></activity>
+        <activity android:name=".AddRecipeActivity"
+                android:windowSoftInputMode="adjustPan"
+            />
     </application>
 
 </manifest>
