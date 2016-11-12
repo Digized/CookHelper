@@ -2,8 +2,6 @@ package ca.uottawa.leagueofsmiles.cookhelper.models;
 
 import com.orm.dsl.Table;
 
-import java.io.Serializable;
-
 import ca.uottawa.leagueofsmiles.cookhelper.Constants;
 
 /**
@@ -13,14 +11,18 @@ import ca.uottawa.leagueofsmiles.cookhelper.Constants;
 /**
  * Modified by Zuraiz on 11/9/2016
  */
-
+@Table
 public class Recipe {
     private Long id;
 
     private String imagePath;
-    private String name;
+    private String title;
     private int calories;
-    private int timeToPrepare; //in minutes
+    private int cookTime; //in minutes
+
+
+
+    private int prepTime;
 
 
 
@@ -30,25 +32,41 @@ public class Recipe {
     private String steps;
 
 
-    public Recipe(long recipeId, String name, int calories, int timeToPrepare, String[] ingredients, String steps, int category,int type){
+    public Recipe(long recipeId, String title, int calories,int prepTime, int cookTime, String[] ingredients, String steps, int category, int type){
         this.id = recipeId;
-        this.name=name;
+        this.title = title;
         this.calories=calories;
-        this.timeToPrepare=timeToPrepare;
+        this.cookTime = cookTime;
+        this.prepTime=prepTime;
         this.ingredients=ingredients;
         this.steps=steps;
         this.category=category;
         this.type=type;
     }
-    public Recipe(long recipeId, String name, int calories, int timeToPrepare, String[] ingredients, String steps){
+    public Recipe(long recipeId, String title, int calories, int cookTime, String[] ingredients, String steps){
         this.id = recipeId;
-        this.name=name;
+        this.title = title;
         this.calories=calories;
-        this.timeToPrepare=timeToPrepare;
+        this.cookTime = cookTime;
+        this.prepTime=0;
         this.ingredients=ingredients;
         this.steps=steps;
         this.category= Constants.CATEGORY_AMERICAN;
         this.type=Constants.TYPE_MEAL;
+    }
+
+    public Recipe(long recipeID){
+        this.id = recipeID;
+    }
+    public void UpdateAllFields(String title, int calories,int prepTime, int cookTime, String[] ingredients, String steps, int category, int type){
+        this.title = title;
+        this.calories=calories;
+        this.cookTime = cookTime;
+        this.prepTime=prepTime;
+        this.ingredients=ingredients;
+        this.steps=steps;
+        this.category=category;
+        this.type=type;
     }
 
     public String getSteps() {
@@ -59,12 +77,12 @@ public class Recipe {
         this.steps = steps;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getCalories() {
@@ -75,12 +93,12 @@ public class Recipe {
         this.calories = calories;
     }
 
-    public int getTimeToPrepare() {
-        return timeToPrepare;
+    public int getCookTime() {
+        return cookTime;
     }
 
-    public void setTimeToPrepare(int timeToPrepare) {
-        this.timeToPrepare = timeToPrepare;
+    public void setCookTime(int cookTime) {
+        this.cookTime = cookTime;
     }
 
     public String getIngredients() {
@@ -118,4 +136,12 @@ public class Recipe {
     public int getType() { return type; }
 
     public void setType(int type) { this.type = type; }
+
+    public int getPrepTime() {
+        return prepTime;
+    }
+
+    public void setPrepTime(int prepTime) {
+        this.prepTime = prepTime;
+    }
 }

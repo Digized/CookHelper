@@ -3,4 +3,8 @@
     <item
         android:id="@+id/saveRecipe"
         android:title="Save Recipe" />
+    <item
+        android:id="@+id/delete"
+        android:icon="@drawable/ic_delete_forever_black_24px"
+        android:title="Delete Recipe"/>
 </menu>
