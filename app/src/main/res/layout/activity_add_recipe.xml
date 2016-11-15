@@ -14,7 +14,10 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,6 +42,14 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
+                    android:id="@+id/editCalories"
+                    android:hint="Calories" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
                     android:id="@+id/editPrepTime"
                     android:hint="Preperation Time" />
 
@@ -50,54 +61,62 @@
                     android:id="@+id/editCookTime"
                     android:hint="Cooking TIme" />
 
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
-
-                        <TextView
-                            android:text="Category"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <Spinner
-                            android:layout_height="wrap_content"
-                            android:id="@+id/spinner3"
-                            android:layout_width="150dp" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
-
-                        <TextView
-                            android:text="Type"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <Spinner
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/spinner4" />
-                    </TableRow>
-
-                </TableLayout>
-
             </LinearLayout>
 
             <ImageButton
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="153dp"
                 app:srcCompat="@drawable/empty_image"
-                android:id="@+id/btnImageIcon" />
+                android:id="@+id/btnImageIcon"
+                android:onClick="onIconClicked" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:text="Category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Spinner
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinCategory"
+                        android:layout_width="300dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:text="Type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinType" />
+                </TableRow>
+
+            </TableLayout>
         </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="125dp">
+            android:layout_height="120dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -128,7 +147,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text|textMultiLine"
+                    android:inputType="textMultiLine"
                     android:ems="10"
                     android:id="@+id/editSteps"
                     android:singleLine="false"
@@ -137,4 +156,5 @@
         </ScrollView>
 
     </LinearLayout>
+
 </RelativeLayout>

@@ -23,7 +23,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewRecipeActivity" />
-        <activity android:name=".AddRecipeActivity"></activity>
+        <activity android:name=".AddRecipeActivity"
+                android:windowSoftInputMode="adjustPan"
+            />
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 
 </manifest>
