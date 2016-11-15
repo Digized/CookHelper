@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ca.uottawa.leagueofsmiles.cookhelper">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -9,11 +11,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <meta-data android:name="DATABASE" android:value="cookbook.db" />
-        <meta-data android:name="VERSION" android:value="1" />
-        <meta-data android:name="QUERY_LOG" android:value="false" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="ca.uottawa" />
+        <meta-data
+            android:name="DATABASE"
+            android:value="cookbook.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="false" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="ca.uottawa" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -23,9 +32,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewRecipeActivity" />
-        <activity android:name=".AddRecipeActivity"
-                android:windowSoftInputMode="adjustPan"
-            />
+        <activity
+            android:name=".AddRecipeActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>
