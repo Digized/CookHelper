@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="About"
+                android:ems="10"
+                android:id="@+id/about"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_weight="0.06"
+            android:layout_height="1dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Application description"
+            android:ems="10"
+            android:id="@+id/applicationDescription"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <TextView
+            android:text="The CookHelper application provides many good recipe services. It provides verity of unique dishes to prepare and some nutrition facts about them..."
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:id="@+id/applicationDescritionText"
+            android:layout_weight="0.19"
+            android:textColorLink="?attr/editTextColor"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="About Us"
+            android:ems="10"
+            android:id="@+id/aboutUs"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <TextView
+            android:text="CookHelper is designed by the group name as League of Smiles, created by four individuel University of Ottawa students."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/aboutUsText"
+            android:layout_weight="0.08" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Contact"
+            android:ems="10"
+            android:id="@+id/Contact"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <TextView
+            android:text="aabdu007@uottawa.ca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/GroupEmail" />
+
+    </LinearLayout>
+</LinearLayout>
