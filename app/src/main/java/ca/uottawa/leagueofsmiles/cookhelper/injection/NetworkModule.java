@@ -1,5 +1,6 @@
 package ca.uottawa.leagueofsmiles.cookhelper.injection;
 
+import ca.uottawa.leagueofsmiles.cookhelper.data.LocalDatabaseRepository;
 import ca.uottawa.leagueofsmiles.cookhelper.data.MockRepository;
 import ca.uottawa.leagueofsmiles.cookhelper.data.Repository;
 import dagger.Module;
@@ -13,7 +14,7 @@ public class NetworkModule {
 
     @Provides
     Repository providesRepository() {
-        return new MockRepository();
+        return new LocalDatabaseRepository();
     }
 
 }
