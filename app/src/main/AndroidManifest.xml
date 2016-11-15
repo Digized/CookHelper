@@ -18,10 +18,6 @@
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="ca.uottawa" />
 
         <activity android:name=".MainActivity">
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@layout/searchable" />
-
             <meta-data android:name="android.app.searchable" android:resource="@layout/searchable"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,10 +28,8 @@
         <activity android:name=".ViewRecipeActivity" />
         <activity android:name=".AddRecipeActivity" android:windowSoftInputMode="adjustPan" />
         <activity android:name=".AboutActivity"></activity>
-        <activity android:name=".AddRecipeActivity" />
         <activity android:name=".Searchable_Activity"></activity>
-        <activity android:name=".AddRecipeActivity" android:windowSoftInputMode="adjustPan" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+
 
 </manifest>
