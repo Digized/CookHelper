@@ -67,7 +67,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="153dp"
                 app:srcCompat="@drawable/empty_image"
-                android:id="@+id/btnImageIcon" />
+                android:id="@+id/btnImageIcon"
+                android:onClick="onIconClicked" />
 
         </LinearLayout>
 
