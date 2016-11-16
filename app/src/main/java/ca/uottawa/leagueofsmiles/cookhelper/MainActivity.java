@@ -41,6 +41,9 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.fabAddNewRecipe)
     FloatingActionButton fabAddNewRecipe;
 
+    @BindView(R.id.fabAboutUs)
+    FloatingActionButton fabAboutUs;
+
     @BindString(R.string.main_screen_title) String main_screen_title;
     @BindString(R.string.dialog_delete_title) String dialog_delete_title;
     @BindString(R.string.dialog_delete_message) String dialog_delete_message;
@@ -61,6 +64,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(getContext(), AddRecipeActivity.class));
             }
         });
+
 
         recipeAdapter = new RecipeAdapter(this,
                 new RecipeAdapterClickListener() {
