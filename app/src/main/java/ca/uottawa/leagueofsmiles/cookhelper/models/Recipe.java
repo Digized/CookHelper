@@ -32,7 +32,7 @@ public class Recipe {
     private String steps;
 
 
-    public Recipe(long recipeId, String title, int calories,int prepTime, int cookTime, String[] ingredients, String steps, int category, int type,String imagePath){
+    public Recipe(long recipeId, String title, int calories,int prepTime, int cookTime, String[] ingredients, String steps, int category, int type){
         this.id = recipeId;
         this.title = title;
         this.calories=calories;
@@ -42,9 +42,8 @@ public class Recipe {
         this.steps=steps;
         this.category=category;
         this.type=type;
-        this.imagePath=imagePath;
     }
-    public Recipe(long recipeId, String title, int calories, int cookTime, String[] ingredients, String steps){ //delete later
+    public Recipe(long recipeId, String title, int calories, int cookTime, String[] ingredients, String steps){
         this.id = recipeId;
         this.title = title;
         this.calories=calories;
