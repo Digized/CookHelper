@@ -38,7 +38,7 @@
         <activity
             android:name=".AddRecipeActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".aboutPage_activity"></activity>
+        <activity android:name=".AboutPageActivity"></activity>
     </application>
 
 </manifest>

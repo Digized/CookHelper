@@ -4,16 +4,12 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 import android.widget.SearchView;
 
 import javax.inject.Inject;
@@ -68,7 +64,7 @@ public class MainActivity extends BaseActivity {
         fabAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), aboutPage_activity.class));
+                startActivity(new Intent(getContext(), AboutPageActivity.class));
             }
         });
 
