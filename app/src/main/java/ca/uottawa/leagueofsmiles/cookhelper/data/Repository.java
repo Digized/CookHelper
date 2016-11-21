@@ -11,8 +11,17 @@ import ca.uottawa.leagueofsmiles.cookhelper.models.Recipe;
 public interface Repository {
     List<Recipe> getAllRecipes();
 
-    void saveRecipe(Recipe recipe);
+    /**
+     * Inserts or updates the recipe using the id
+     * @param recipe
+     */
+    void putRecipe(Recipe recipe);
 
+    /**
+     * Gets the recipe with the recipeId or returns null if not found
+     * @param recipeId
+     * @return
+     */
     Recipe getRecipe(long recipeId);
 
     void deleteRecipe(long recipedId);

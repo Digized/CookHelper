@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 

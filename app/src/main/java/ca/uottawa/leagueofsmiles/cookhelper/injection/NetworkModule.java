@@ -2,8 +2,7 @@ package ca.uottawa.leagueofsmiles.cookhelper.injection;
 
 import javax.inject.Singleton;
 
-import ca.uottawa.leagueofsmiles.cookhelper.data.LocalDatabaseRepository;
-import ca.uottawa.leagueofsmiles.cookhelper.data.MockRepository;
+import ca.uottawa.leagueofsmiles.cookhelper.data.LocalRepository;
 import ca.uottawa.leagueofsmiles.cookhelper.data.Repository;
 import dagger.Module;
 import dagger.Provides;
@@ -17,7 +16,7 @@ public class NetworkModule {
     @Singleton
     @Provides
     Repository providesRepository() {
-        return new LocalDatabaseRepository();
+        return new LocalRepository();
     }
 
 }

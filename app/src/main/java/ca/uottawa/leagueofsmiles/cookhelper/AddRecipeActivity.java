@@ -3,8 +3,6 @@ package ca.uottawa.leagueofsmiles.cookhelper;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,10 +23,6 @@ import butterknife.ButterKnife;
 import ca.uottawa.leagueofsmiles.cookhelper.data.Repository;
 import ca.uottawa.leagueofsmiles.cookhelper.models.Recipe;
 import ca.uottawa.leagueofsmiles.cookhelper.utils.ImageLoader;
-
-import static ca.uottawa.leagueofsmiles.cookhelper.R.string.dialog_delete_confirm;
-import static ca.uottawa.leagueofsmiles.cookhelper.R.string.dialog_delete_message;
-import static ca.uottawa.leagueofsmiles.cookhelper.R.string.dialog_delete_title;
 
 public class AddRecipeActivity extends BaseActivity {
 
@@ -137,7 +131,7 @@ public class AddRecipeActivity extends BaseActivity {
                     if(recipeID==-1)
                        recipeID=(long)mRepository.getAllRecipes().size();
                     mRepository.deleteRecipe(recipeID);
-                    mRepository.saveRecipe(new Recipe(recipeID,editTitle.getText().toString(),Integer.parseInt(editCalories.getText().toString()),
+                    mRepository.putRecipe(new Recipe(recipeID,editTitle.getText().toString(),Integer.parseInt(editCalories.getText().toString()),
                             Integer.parseInt(editPrepTime.getText().toString()),Integer.parseInt(editCookTime.getText().toString()),
                             parseIngredients(),editSteps.getText().toString(),Constants.CATEGORY_AMERICAN, Constants.TYPE_MEAL,
                             picturePath));

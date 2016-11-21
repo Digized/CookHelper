@@ -26,7 +26,7 @@ public class MockRepository implements Repository {
     }
 
     @Override
-    public void saveRecipe(Recipe recipe) {
+    public void putRecipe(Recipe recipe) {
         mockRecipes.add(recipe);
     }
 
