@@ -13,14 +13,12 @@ import ca.uottawa.leagueofsmiles.cookhelper.Constants;
  */
 @Table
 public class Recipe {
-    private Long id;
+    private Long id = null;
 
     private String imagePath;
     private String title;
     private int calories;
     private int cookTime; //in minutes
-
-
 
     private int prepTime;
 
@@ -28,12 +26,15 @@ public class Recipe {
 
     private int category;
     private int type;
-    private String[] ingredients;
+    private String ingredients;
     private String steps;
 
+    //Needed for Sugar
+    public Recipe() {
 
-    public Recipe(long recipeId, String title, int calories,int prepTime, int cookTime, String[] ingredients, String steps, int category, int type,String imagePath){
-        this.id = recipeId;
+    }
+
+    public Recipe(String title, int calories,int prepTime, int cookTime, String ingredients, String steps, int category, int type,String imagePath){
         this.title = title;
         this.calories=calories;
         this.cookTime = cookTime;
@@ -44,38 +45,9 @@ public class Recipe {
         this.type=type;
         this.imagePath=imagePath;
     }
-    public Recipe(long recipeId, String title, int calories, int cookTime, String[] ingredients, String steps){ //delete later
-        this.id = recipeId;
-        this.title = title;
-        this.calories=calories;
-        this.cookTime = cookTime;
-        this.prepTime=0;
-        this.ingredients=ingredients;
-        this.steps=steps;
-        this.category= Constants.CATEGORY_AMERICAN;
-        this.type=Constants.TYPE_MEAL;
-    }
-
-    public Recipe(long recipeID){
-        this.id = recipeID;
-    }
-    public void UpdateAllFields(String title, int calories,int prepTime, int cookTime, String[] ingredients, String steps, int category, int type){
-        this.title = title;
-        this.calories=calories;
-        this.cookTime = cookTime;
-        this.prepTime=prepTime;
-        this.ingredients=ingredients;
-        this.steps=steps;
-        this.category=category;
-        this.type=type;
-    }
 
     public String getSteps() {
         return steps;
-    }
-
-    public void setSteps(String steps) {
-        this.steps = steps;
     }
 
     public String getTitle() {
@@ -90,28 +62,19 @@ public class Recipe {
         return calories;
     }
 
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
 
     public int getCookTime() {
         return cookTime;
     }
 
-    public void setCookTime(int cookTime) {
-        this.cookTime = cookTime;
-    }
-
     public String getIngredients() {
         String s="";
-        for (int i=0;i<ingredients.length;i++) {
-            s = s +(i+1)+") "+ingredients[i] + "\n";
+        String[] mIngredients = ingredients.split(Constants.INGREDIANTS_DELIMITER);
+
+        for (int i=0;i<mIngredients.length;i++) {
+            s = s +(i+1)+") "+mIngredients[i] + "\n";
         }
         return s;
-    }
-
-    public void setIngredients(String[] ingredients) {
-        this.ingredients = ingredients;
     }
 
     public Long getId() {
@@ -122,27 +85,17 @@ public class Recipe {
         return imagePath;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public void setRecipeId(long recipeId) {
-        this.id = recipeId;
-    }
-
     public int getCategory() {return category;}
 
-    public void setCategory(int category) {this.category = category; }
-
     public int getType() { return type; }
-
-    public void setType(int type) { this.type = type; }
 
     public int getPrepTime() {
         return prepTime;
     }
 
-    public void setPrepTime(int prepTime) {
-        this.prepTime = prepTime;
+    public RecipeBuilder toNewBuilder() {
+        //TODO implement
+        return null;
     }
+
 }

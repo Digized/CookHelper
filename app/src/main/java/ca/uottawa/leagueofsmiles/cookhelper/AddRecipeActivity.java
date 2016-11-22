@@ -131,10 +131,10 @@ public class AddRecipeActivity extends BaseActivity {
                     if(recipeID==-1)
                        recipeID=(long)mRepository.getAllRecipes().size();
                     mRepository.deleteRecipe(recipeID);
-                    mRepository.putRecipe(new Recipe(recipeID,editTitle.getText().toString(),Integer.parseInt(editCalories.getText().toString()),
+                    /*mRepository.putRecipe(new Recipe(recipeID,editTitle.getText().toString(),Integer.parseInt(editCalories.getText().toString()),
                             Integer.parseInt(editPrepTime.getText().toString()),Integer.parseInt(editCookTime.getText().toString()),
                             parseIngredients(),editSteps.getText().toString(),Constants.CATEGORY_AMERICAN, Constants.TYPE_MEAL,
-                            picturePath));
+                            picturePath));*/
                     Toast.makeText(this, "Recipe Saved", Toast.LENGTH_SHORT).show();
                   finish();
                     break;
