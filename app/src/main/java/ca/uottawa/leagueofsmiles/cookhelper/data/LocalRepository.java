@@ -10,14 +10,14 @@ import ca.uottawa.leagueofsmiles.cookhelper.models.Recipe;
  * Created by Dan on 11/10/2016.
  */
 
-public class LocalDatabaseRepository implements Repository {
+public class LocalRepository implements Repository {
     @Override
     public List<Recipe> getAllRecipes() {
         return SugarRecord.listAll(Recipe.class);
     }
 
     @Override
-    public void saveRecipe(Recipe recipe) {
+    public void putRecipe(Recipe recipe) {
         SugarRecord.save(recipe);
     }
 

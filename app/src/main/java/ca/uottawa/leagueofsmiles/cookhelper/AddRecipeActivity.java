@@ -23,7 +23,7 @@ public class AddRecipeActivity extends BaseActivity {
 
     private long recipeID=-1;
 
-   @BindView(R.id.editRecipeTitle)
+    @BindView(R.id.editRecipeTitle)
     EditText editTitle;
     @BindView(R.id.editCalories)
     EditText editCalories;
@@ -75,22 +75,24 @@ public class AddRecipeActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-            switch (item.getItemId()){
-                case R.id.saveRecipe:
-                    if(recipeID==-1)
-                       recipeID=(long)mRepository.getAllRecipes().size();
-                    mRepository.deleteRecipe(recipeID);
-                    mRepository.saveRecipe(new Recipe(recipeID,editTitle.getText().toString(),Integer.parseInt(editCalories.getText().toString()),
-                            Integer.parseInt(editPrepTime.getText().toString()),Integer.parseInt(editCookTime.getText().toString()),
-                            parseIngredients(),editSteps.getText().toString(),Constants.CATEGORY_AMERICAN, Constants.TYPE_MEAL));
-                    Toast.makeText(this, "Recipe Saved", Toast.LENGTH_SHORT).show();
-                  finish();
-                    break;
-                case R.id.delete:
-                    mRepository.deleteRecipe(recipeID);
-                    finish();
-                    break;
-            }
+        switch (item.getItemId()){
+            case R.id.saveRecipe:
+                if(recipeID==-1)
+                    recipeID=(long)mRepository.getAllRecipes().size();
+                mRepository.deleteRecipe(recipeID);
+                //TODO
+                /*mRepository.saveRecipe(new Recipe(recipeID,editTitle.getText().toString(),Integer.parseInt(editCalories.getText().toString()),
+                        Integer.parseInt(editPrepTime.getText().toString()),Integer.parseInt(editCookTime.getText().toString()),
+                        parseIngredients(),editSteps.getText().toString(),Constants.CATEGORY_AMERICAN, Constants.TYPE_MEAL));
+                        */
+                Toast.makeText(this, "Recipe Saved", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
+            case R.id.delete:
+                mRepository.deleteRecipe(recipeID);
+                finish();
+                break;
+        }
         return true;
     }
 

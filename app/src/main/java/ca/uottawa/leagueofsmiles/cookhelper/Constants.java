@@ -18,4 +18,5 @@ public class Constants {
     public static final int TYPE_APPETIZER=0;
     public static final int TYPE_DESSERT=1;
     public static final int TYPE_MEAL=2;
+    public static final String INGREDIANTS_DELIMITER = "\n\r";
 }
