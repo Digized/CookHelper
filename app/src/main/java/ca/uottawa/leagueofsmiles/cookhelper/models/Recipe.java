@@ -35,7 +35,7 @@ public class Recipe {
     }
 
     public Recipe(String title, int calories,int prepTime, int cookTime, String ingredients, String steps, int category, int type,String imagePath){
-        this.title = title;
+		this.title = title;
         this.calories=calories;
         this.cookTime = cookTime;
         this.prepTime=prepTime;
@@ -44,7 +44,7 @@ public class Recipe {
         this.category=category;
         this.type=type;
         this.imagePath=imagePath;
-    }
+	}
 
     public String getSteps() {
         return steps;

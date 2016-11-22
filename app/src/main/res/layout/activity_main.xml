@@ -7,19 +7,32 @@
     android:layout_height="match_parent"
     tools:context="ca.uottawa.leagueofsmiles.cookhelper.MainActivity">
 
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAddNewRecipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
+        android:layout_width="99dp"
+        android:layout_height="108dp"
+        android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
         android:src="@drawable/ic_add_black_24dp"
         android:tint="@color/white"
-        app:fabSize="normal" />
+        />
 
     <ca.uottawa.leagueofsmiles.cookhelper.views.RecipeRecyclerView
         android:id="@+id/recipeList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="384dp"
+        android:layout_width="match_parent">
+
+    </ca.uottawa.leagueofsmiles.cookhelper.views.RecipeRecyclerView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAboutUs"
+        android:layout_width="112dp"
+        android:layout_height="107dp"
+        android:layout_gravity="start|bottom"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_about_us"
+        android:tint="@color/white"
+        app:fabSize="normal" />
 
 </FrameLayout>

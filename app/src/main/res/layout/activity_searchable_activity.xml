@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activity android:name=".SearchResultsActivity"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <intent-filter>
+            <action android:name="android.intent.action.SEARCH" />
+        </intent-filter>
+</activity>

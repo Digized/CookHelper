@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ca.uottawa.leagueofsmiles.cookhelper">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -25,6 +23,10 @@
             android:value="ca.uottawa" />
 
         <activity android:name=".MainActivity">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@layout/searchable" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,10 +34,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewRecipeActivity" />
+        <activity android:name=".Searchable_Activity" />
         <activity
             android:name=".AddRecipeActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".AboutPageActivity"></activity>
     </application>
 
 </manifest>
