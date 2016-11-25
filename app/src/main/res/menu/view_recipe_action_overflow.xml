@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/open_youtube"
-        android:icon="@drawable/ic_youtube_play"
-        android:title="Open in YouTube"/>
+        android:icon="@drawable/ic_ondemand_video_black_24dp"
+        android:title="Open in YouTube"
+        app:showAsAction="collapseActionView|ifRoom"/>
 
     <item
         android:id="@+id/edit"
-        android:icon="@color/colorPrimary"
-        android:title="Edit Recipe"/>
+        android:icon="@drawable/ic_edit_black_24dp"
+        android:title="Edit Recipe"
+        app:showAsAction="collapseActionView|ifRoom"/>
+
     <item
         android:id="@+id/delete"
         android:icon="@drawable/ic_delete_forever_black_24px"
-        android:title="Delete Recipe"/>
+        android:title="Delete Recipe"
+        app:showAsAction="collapseActionView|ifRoom"/>
+
 
 </menu>

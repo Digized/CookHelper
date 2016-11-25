@@ -19,11 +19,7 @@ public class Recipe {
     private String title;
     private int calories;
     private int cookTime; //in minutes
-
     private int prepTime;
-
-
-
     private int category;
     private int type;
     private String ingredients;

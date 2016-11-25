@@ -60,14 +60,6 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        /*fabAboutUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), AboutPageActivity.class));
-            }
-        });*/
-
-
         recipeAdapter = new RecipeAdapter(this,
                 new RecipeAdapterClickListener() {
                     @Override
