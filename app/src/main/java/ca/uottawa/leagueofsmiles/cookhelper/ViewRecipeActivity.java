@@ -48,6 +48,19 @@ public class ViewRecipeActivity extends BaseActivity {
                 Intent intent=new Intent(getContext(),AddRecipeActivity.class);
                 intent.putExtra(Constants.RECIPE_ID,recipeID);
                 startActivity(intent);
+                finish();
+                break;
+            case R.id.open_youtube:
+                Intent intent1 = new Intent(Intent.ACTION_SEARCH);
+                intent1.setPackage("com.google.android.youtube");
+                intent1.putExtra("query", "Android");
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent1);
+                break;
+            case R.id.delete:
+                mRepository.deleteRecipe(recipeID);
+                finish();
+                break;
         }
         return true;
     }

@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 
@@ -37,8 +38,6 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.fabAddNewRecipe)
     FloatingActionButton fabAddNewRecipe;
 
-    @BindView(R.id.fabAboutUs)
-    FloatingActionButton fabAboutUs;
 
     @BindString(R.string.main_screen_title) String main_screen_title;
     @BindString(R.string.dialog_delete_title) String dialog_delete_title;
@@ -61,12 +60,12 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        fabAboutUs.setOnClickListener(new View.OnClickListener() {
+        /*fabAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), AboutPageActivity.class));
             }
-        });
+        });*/
 
 
         recipeAdapter = new RecipeAdapter(this,
@@ -115,6 +114,21 @@ public class MainActivity extends BaseActivity {
         SearchView searchView=(SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.about:
+                Intent intent=new Intent(getContext(),AboutPageActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.help:
+                Intent intent1=new Intent(getContext(),HelpPageActivity.class);
+                startActivity(intent1);
+                break;
+        }
         return true;
     }
 }

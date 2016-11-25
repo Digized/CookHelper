@@ -15,6 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ca.uottawa.leagueofsmiles.cookhelper.data.Repository;
 import ca.uottawa.leagueofsmiles.cookhelper.models.Recipe;
+import ca.uottawa.leagueofsmiles.cookhelper.models.RecipeBuilder;
 
 public class AddRecipeActivity extends BaseActivity {
 
@@ -81,10 +82,14 @@ public class AddRecipeActivity extends BaseActivity {
                     recipeID=(long)mRepository.getAllRecipes().size();
                 mRepository.deleteRecipe(recipeID);
                 //TODO
-                /*mRepository.saveRecipe(new Recipe(recipeID,editTitle.getText().toString(),Integer.parseInt(editCalories.getText().toString()),
-                        Integer.parseInt(editPrepTime.getText().toString()),Integer.parseInt(editCookTime.getText().toString()),
-                        parseIngredients(),editSteps.getText().toString(),Constants.CATEGORY_AMERICAN, Constants.TYPE_MEAL));
-                        */
+                mRepository.putRecipe(new RecipeBuilder()
+                        .setTitle(editTitle.getText().toString())
+                        .setCalories(Integer.parseInt(editCalories.getText().toString()))
+                        .setPrepTime(Integer.parseInt(editPrepTime.getText().toString()))
+                        .setCookTime(Integer.parseInt(editCookTime.getText().toString()))
+                        .setIngredients(parseIngredients())
+                        .setSteps(editSteps.getText().toString())
+                        .build());
                 Toast.makeText(this, "Recipe Saved", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
