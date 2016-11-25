@@ -13,6 +13,7 @@ import ca.uottawa.leagueofsmiles.cookhelper.Constants;
  */
 @Table
 public class Recipe {
+
     private Long id = null;
 
     private String imagePath;

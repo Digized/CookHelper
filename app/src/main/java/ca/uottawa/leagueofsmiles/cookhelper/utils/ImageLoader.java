@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -42,11 +43,16 @@ public class ImageLoader {
         File imagePath = new File(path, recipeId);
 
         FileOutputStream fileOutputStream = null;
-
+        Toast.makeText(context, imagePath.getAbsolutePath(), Toast.LENGTH_LONG).show();
         try {
             fileOutputStream = new FileOutputStream(imagePath);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
-        } finally {
+        }catch (NullPointerException e){
+            //WILL REMOVE LATER //TODO
+            Toast.makeText(context, ((fileOutputStream!=null)?"True":"False")+ ((bitmap!=null)?"True":"False"), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        finally {
             if (fileOutputStream != null)
                 fileOutputStream.close();
         }

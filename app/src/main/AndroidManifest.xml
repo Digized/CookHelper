@@ -41,5 +41,5 @@
         <activity android:name=".AboutPageActivity" />
         <activity android:name=".HelpPageActivity"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 </manifest>

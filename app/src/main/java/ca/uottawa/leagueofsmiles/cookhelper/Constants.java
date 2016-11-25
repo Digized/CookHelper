@@ -14,6 +14,7 @@ public class Constants {
     public static final int CATEGORY_JAMAICAN=3;
     public static final int CATEGORY_AMERICAN=4;
     public static final int CATEGORY_CANADIAN=5;
+    public static final int CATEGORY_OTHER=6;
 
     //Types
     public static final int TYPE_APPETIZER=0;
