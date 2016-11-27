@@ -30,12 +30,13 @@ public class ImageLoader {
      * @return the path to the bitmap or null if there was an error
      */
     public static String saveImage(Context context, Bitmap bitmap, String recipeId) {
+        String imagePath="";
         try {
-            saveImageInternal(context, bitmap, recipeId);
+         imagePath= saveImageInternal(context, bitmap, recipeId);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return imagePath;
     }
 
     private static String saveImageInternal(Context context, Bitmap bitmap, String recipeId) throws IOException {
@@ -43,16 +44,10 @@ public class ImageLoader {
         File imagePath = new File(path, recipeId);
 
         FileOutputStream fileOutputStream = null;
-        Toast.makeText(context, imagePath.getAbsolutePath(), Toast.LENGTH_LONG).show();
         try {
             fileOutputStream = new FileOutputStream(imagePath);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
-        }catch (NullPointerException e){
-            //WILL REMOVE LATER //TODO
-            Toast.makeText(context, ((fileOutputStream!=null)?"True":"False")+ ((bitmap!=null)?"True":"False"), Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-        finally {
+        }finally {
             if (fileOutputStream != null)
                 fileOutputStream.close();
         }

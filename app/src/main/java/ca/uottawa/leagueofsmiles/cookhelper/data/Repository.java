@@ -26,4 +26,12 @@ public interface Repository {
 
     void deleteRecipe(long recipedId);
 
+    /**
+     *
+     * @param recipeId
+     * @param recipe
+     * @return true if recipe found and updated
+     */
+    boolean updateRecipe(long recipeId, Recipe recipe);
+
 }

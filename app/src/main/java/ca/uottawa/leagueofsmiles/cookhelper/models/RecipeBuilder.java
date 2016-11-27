@@ -61,4 +61,7 @@ public class RecipeBuilder {
     public Recipe build() {
         return new Recipe(title, calories, prepTime, cookTime, ingredients, steps, category, type, imagePath);
     }
+    public Recipe update(long recipeId){
+        return new Recipe(recipeId,title, calories, prepTime, cookTime, ingredients, steps, category, type, imagePath);
+    }
 }

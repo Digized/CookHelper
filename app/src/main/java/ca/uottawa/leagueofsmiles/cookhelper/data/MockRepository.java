@@ -1,8 +1,11 @@
 package ca.uottawa.leagueofsmiles.cookhelper.data;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import ca.uottawa.leagueofsmiles.cookhelper.models.Recipe;
 import ca.uottawa.leagueofsmiles.cookhelper.models.RecipeBuilder;
@@ -55,4 +58,16 @@ public class MockRepository implements Repository {
         }
     }
 
+    @Override
+    public boolean updateRecipe(long recipeId, Recipe recipe) {
+        ListIterator<Recipe> recipeIterator = mockRecipes.listIterator();
+        while (recipeIterator.hasNext()) {
+            Recipe next = recipeIterator.next();
+            if (next.getId() == recipeId) {
+                recipeIterator.set(recipe);
+                return true;
+            }
+        }
+        return false;
+    }
 }

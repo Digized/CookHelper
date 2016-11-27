@@ -30,4 +30,9 @@ public class LocalRepository implements Repository {
     public void deleteRecipe(long recipedId) {
         SugarRecord.deleteAll(Recipe.class, "id=?", new String[]{ String.valueOf(recipedId) });
     }
+
+    @Override
+    public boolean updateRecipe(long recipeId, Recipe recipe) {
+        return false;
+    }
 }
