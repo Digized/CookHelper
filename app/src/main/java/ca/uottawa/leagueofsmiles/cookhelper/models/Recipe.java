@@ -58,7 +58,7 @@ public class Recipe {
     public Recipe(long recipeID){
         this.id = recipeID;
     }
-    public void UpdateAllFields(String title, int calories,int prepTime, int cookTime, String[] ingredients, String steps, int category, int type){
+    public void Update(String title, int calories,int prepTime, int cookTime, String[] ingredients, String steps, int category, int type){
         this.title = title;
         this.calories=calories;
         this.cookTime = cookTime;

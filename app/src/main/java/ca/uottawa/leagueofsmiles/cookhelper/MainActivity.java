@@ -1,12 +1,16 @@
 package ca.uottawa.leagueofsmiles.cookhelper;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.SearchView;
 
 import javax.inject.Inject;
 
@@ -33,6 +37,9 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.fabAddNewRecipe)
     FloatingActionButton fabAddNewRecipe;
 
+    @BindView(R.id.fabAboutUs)
+    FloatingActionButton fabAboutUs;
+
     @BindString(R.string.main_screen_title) String main_screen_title;
     @BindString(R.string.dialog_delete_title) String dialog_delete_title;
     @BindString(R.string.dialog_delete_message) String dialog_delete_message;
@@ -42,8 +49,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         ButterKnife.bind(this);
         getComponent().inject(this);
@@ -55,6 +60,14 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(getContext(), AddRecipeActivity.class));
             }
         });
+
+        fabAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), AboutPageActivity.class));
+            }
+        });
+
 
         recipeAdapter = new RecipeAdapter(this,
                 new RecipeAdapterClickListener() {
@@ -92,5 +105,16 @@ public class MainActivity extends BaseActivity {
 
     private void updateRecipeList() {
         recipeAdapter.setRecipes(mRepository.getAllRecipes());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        SearchManager searchManager=(SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView=(SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        return true;
     }
 }
