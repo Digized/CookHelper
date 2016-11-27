@@ -2,6 +2,8 @@ package ca.uottawa.leagueofsmiles.cookhelper.app;
 
 import android.app.Application;
 
+import com.orm.SugarContext;
+
 import ca.uottawa.leagueofsmiles.cookhelper.injection.ApplicationComponent;
 import ca.uottawa.leagueofsmiles.cookhelper.injection.DaggerApplicationComponent;
 
@@ -16,6 +18,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         daggerApplicationComponent = DaggerApplicationComponent.create();
+        SugarContext.init(this);
     }
 
     public ApplicationComponent getComponent() {
