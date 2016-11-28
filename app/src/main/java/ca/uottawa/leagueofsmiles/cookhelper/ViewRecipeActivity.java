@@ -1,23 +1,39 @@
 package ca.uottawa.leagueofsmiles.cookhelper;
 
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import ca.uottawa.leagueofsmiles.cookhelper.data.Repository;
 import ca.uottawa.leagueofsmiles.cookhelper.models.Recipe;
+import ca.uottawa.leagueofsmiles.cookhelper.utils.ImageLoader;
 
 public class ViewRecipeActivity extends BaseActivity {
 
     @Inject
     Repository mRepository;
+    @BindView(R.id.recipeTitle)
+    TextView title;
+    @BindView(R.id.recipeStats_textView)
+    TextView recipeStats;
+    @BindView(R.id.ingredientsbox)
+    TextView ingredients;
+    @BindView(R.id.stepsbox)
+    TextView steps;
+    @BindView(R.id.recipeIcon)
+    ImageView imgRecipe;
+
 
     private long recipeID;
 
@@ -41,13 +57,21 @@ public class ViewRecipeActivity extends BaseActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
 
         switch (item.getItemId()){
             case R.id.edit:
                 Intent intent=new Intent(getContext(),AddRecipeActivity.class);
                 intent.putExtra(Constants.RECIPE_ID,recipeID);
                 startActivity(intent);
+                break;
+            case R.id.open_youtube:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/results?search_query="+mRepository.getRecipe(recipeID).getTitle()));
+                startActivity(browserIntent);
+                break;
+            case R.id.delete:
+                mRepository.deleteRecipe(recipeID);
+                finish();
+                break;
         }
         return true;
     }
@@ -55,20 +79,21 @@ public class ViewRecipeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if(mRepository.getRecipe(recipeID)!=null)
         updateView();
+        else finish();
 
     }
 
+
+
     private void updateView(){
         Recipe recipe=mRepository.getRecipe(recipeID);
-
-        TextView title=(TextView) findViewById(R.id.recipeTitle);
-        TextView recipeStats=(TextView) findViewById(R.id.recipeStats_textView);
-        TextView ingredients=(TextView) findViewById(R.id.ingredientsbox);
-        TextView steps=(TextView) findViewById(R.id.stepsbox);
-
-        //TODO image functionality
-
+        if(recipe.getImagePath()!=null) {
+            imgRecipe.setImageBitmap(ImageLoader.loadImage(recipe.getImagePath()));
+        }else {
+            imgRecipe.setImageResource(R.drawable.ic_book_black_24dp);
+        }
         title.setText(recipe.getTitle());
         recipeStats.setText("Prepare Time: "+recipe.getCookTime()+" minutes\nCalories: "+recipe.getCalories()); //will fix this later
         ingredients.setText(recipe.getIngredients());

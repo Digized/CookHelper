@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -29,12 +30,13 @@ public class ImageLoader {
      * @return the path to the bitmap or null if there was an error
      */
     public static String saveImage(Context context, Bitmap bitmap, String recipeId) {
+        String imagePath="";
         try {
-            saveImageInternal(context, bitmap, recipeId);
+         imagePath= saveImageInternal(context, bitmap, recipeId);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return imagePath;
     }
 
     private static String saveImageInternal(Context context, Bitmap bitmap, String recipeId) throws IOException {
@@ -42,11 +44,10 @@ public class ImageLoader {
         File imagePath = new File(path, recipeId);
 
         FileOutputStream fileOutputStream = null;
-
         try {
             fileOutputStream = new FileOutputStream(imagePath);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
-        } finally {
+        }finally {
             if (fileOutputStream != null)
                 fileOutputStream.close();
         }

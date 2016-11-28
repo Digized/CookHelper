@@ -13,17 +13,14 @@ import ca.uottawa.leagueofsmiles.cookhelper.Constants;
  */
 @Table
 public class Recipe {
+    public static Long ids=0L;
     private Long id = null;
 
     private String imagePath;
     private String title;
     private int calories;
     private int cookTime; //in minutes
-
     private int prepTime;
-
-
-
     private int category;
     private int type;
     private String ingredients;
@@ -35,7 +32,8 @@ public class Recipe {
     }
 
     public Recipe(String title, int calories,int prepTime, int cookTime, String ingredients, String steps, int category, int type,String imagePath){
-		this.title = title;
+		this.id=ids++;
+        this.title = title;
         this.calories=calories;
         this.cookTime = cookTime;
         this.prepTime=prepTime;
@@ -45,6 +43,18 @@ public class Recipe {
         this.type=type;
         this.imagePath=imagePath;
 	}
+    public Recipe(long id,String title, int calories,int prepTime, int cookTime, String ingredients, String steps, int category, int type,String imagePath){
+        this.id=id;
+        this.title = title;
+        this.calories=calories;
+        this.cookTime = cookTime;
+        this.prepTime=prepTime;
+        this.ingredients=ingredients;
+        this.steps=steps;
+        this.category=category;
+        this.type=type;
+        this.imagePath=imagePath;
+    }
 
     public String getSteps() {
         return steps;

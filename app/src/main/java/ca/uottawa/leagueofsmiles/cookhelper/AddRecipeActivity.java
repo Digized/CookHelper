@@ -1,11 +1,19 @@
 package ca.uottawa.leagueofsmiles.cookhelper;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,12 +23,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ca.uottawa.leagueofsmiles.cookhelper.data.Repository;
 import ca.uottawa.leagueofsmiles.cookhelper.models.Recipe;
+import ca.uottawa.leagueofsmiles.cookhelper.models.RecipeBuilder;
+import ca.uottawa.leagueofsmiles.cookhelper.utils.ImageLoader;
 
 public class AddRecipeActivity extends BaseActivity {
 
     @Inject
     Repository mRepository;
-
+Recipe recipe;
     private long recipeID=-1;
 
     @BindView(R.id.editRecipeTitle)
@@ -39,6 +49,10 @@ public class AddRecipeActivity extends BaseActivity {
     Spinner spinCategory;
     @BindView(R.id.spinType)
     Spinner spinType;
+    @BindView(R.id.btnImageIcon)
+    ImageButton btnImageIcon;
+
+    String imagePath;
 
 
     @Override
@@ -49,17 +63,32 @@ public class AddRecipeActivity extends BaseActivity {
         ButterKnife.bind(this);
         getComponent().inject(this);
 
+        ArrayAdapter<CharSequence> categoryAdapter = ArrayAdapter.createFromResource(this,
+                R.array.categories_array, android.R.layout.simple_spinner_item);
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinCategory.setAdapter(categoryAdapter);
+
+        ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this,
+                R.array.types_array, android.R.layout.simple_spinner_item);
+        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinType.setAdapter(typeAdapter);
+
         Intent intent=getIntent();
         if (intent.hasExtra(Constants.RECIPE_ID)){
             recipeID=intent.getLongExtra(Constants.RECIPE_ID,0L);
-            Recipe recipe=mRepository.getRecipe(recipeID);
+            recipe=mRepository.getRecipe(recipeID);
             Toast.makeText(this, recipe.getTitle(), Toast.LENGTH_SHORT).show();
             editTitle.setText(recipe.getTitle());
-            editCalories.setText(recipe.getCalories()+"");
-            editCookTime.setText(recipe.getCookTime()+"");
-            editPrepTime.setText(recipe.getPrepTime()+"");
+            editCalories.setText(String.valueOf(recipe.getCalories()));
+            editCookTime.setText(String.valueOf(recipe.getCookTime()));
+            editPrepTime.setText(String.valueOf(recipe.getPrepTime()));
             editIngredients.setText(recipe.getIngredients());
             editSteps.setText(recipe.getSteps());
+            spinCategory.setSelection(recipe.getCategory());
+            spinType.setSelection(recipe.getType());
+            imagePath=recipe.getImagePath();
+            btnImageIcon.setImageBitmap(ImageLoader.loadImage(imagePath));
+
 
 
         }
@@ -77,15 +106,35 @@ public class AddRecipeActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.saveRecipe:
-                if(recipeID==-1)
-                    recipeID=(long)mRepository.getAllRecipes().size();
-                mRepository.deleteRecipe(recipeID);
-                //TODO
-                /*mRepository.saveRecipe(new Recipe(recipeID,editTitle.getText().toString(),Integer.parseInt(editCalories.getText().toString()),
-                        Integer.parseInt(editPrepTime.getText().toString()),Integer.parseInt(editCookTime.getText().toString()),
-                        parseIngredients(),editSteps.getText().toString(),Constants.CATEGORY_AMERICAN, Constants.TYPE_MEAL));
-                        */
-                Toast.makeText(this, "Recipe Saved", Toast.LENGTH_SHORT).show();
+                if(recipeID==-1){
+                mRepository.putRecipe(new RecipeBuilder()
+                        .setTitle(editTitle.getText().toString())
+                        .setCalories(Integer.parseInt((!editCalories.getText().toString().equals(""))?editCalories.getText().toString():"0"))
+                        .setPrepTime(Integer.parseInt((!editPrepTime.getText().toString().equals(""))?editPrepTime.getText().toString():"0"))
+                        .setCookTime(Integer.parseInt((!editCookTime.getText().toString().equals(""))?editCookTime.getText().toString():"0"))
+                        .setIngredients(parseIngredients())
+                        .setSteps(editSteps.getText().toString())
+                        .setType(spinType.getSelectedItemPosition())
+                        .setCategory(spinCategory.getSelectedItemPosition())
+                        .setImagePath(imagePath)
+                        .build());
+                    Toast.makeText(this, "Recipe Saved", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    mRepository.updateRecipe(recipeID,new RecipeBuilder()
+                            .setTitle(editTitle.getText().toString())
+                            .setCalories(Integer.parseInt((!editCalories.getText().toString().equals(""))?editCalories.getText().toString():"0"))
+                            .setPrepTime(Integer.parseInt((!editPrepTime.getText().toString().equals(""))?editPrepTime.getText().toString():"0"))
+                            .setCookTime(Integer.parseInt((!editCookTime.getText().toString().equals(""))?editCookTime.getText().toString():"0"))
+                            .setIngredients(parseIngredients())
+                            .setSteps(editSteps.getText().toString())
+                            .setType(spinType.getSelectedItemPosition())
+                            .setCategory(spinCategory.getSelectedItemPosition())
+                            .setImagePath(imagePath)
+                            .update(recipeID));
+                    Toast.makeText(this, "Recipe Updated"+ mRepository.getRecipe(recipeID).getTitle(), Toast.LENGTH_SHORT).show();
+
+                }
                 finish();
                 break;
             case R.id.delete:
@@ -103,5 +152,27 @@ public class AddRecipeActivity extends BaseActivity {
         reader=lines.split(delimiter);
         return reader;
 
+    }
+    public void OnbtnImageIconClick(View view){
+
+
+        Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickIntent.setType("image/*");
+
+
+        startActivityForResult(pickIntent, 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if((requestCode==0)&&(resultCode==RESULT_OK)){
+            Cursor cursor=getContentResolver().query(data.getData(),new String[]{MediaStore.Images.Media.DATA},null,null,null);
+            cursor.moveToFirst();
+            imagePath=cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            cursor.close();
+            Bitmap bitmap=BitmapFactory.decodeFile(imagePath);
+            imagePath=ImageLoader.saveImage(getContext(), bitmap,String.valueOf(recipeID));
+            btnImageIcon.setImageBitmap(ImageLoader.loadImage(imagePath));
+        }
     }
 }
