@@ -1,12 +1,16 @@
 package ca.uottawa.leagueofsmiles.cookhelper;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -154,13 +158,14 @@ Recipe recipe;
 
     }
     public void OnbtnImageIconClick(View view){
+        if(isStoragePermissionGranted()) {
+            Toast.makeText(this, "ADADSAD", Toast.LENGTH_SHORT).show();
+            Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            pickIntent.setType("image/*");
 
 
-        Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        pickIntent.setType("image/*");
-
-
-        startActivityForResult(pickIntent, 0);
+            startActivityForResult(pickIntent, 0);
+        }
     }
 
     @Override
@@ -173,6 +178,20 @@ Recipe recipe;
             Bitmap bitmap=BitmapFactory.decodeFile(imagePath);
             imagePath=ImageLoader.saveImage(getContext(), bitmap,String.valueOf(recipeID));
             btnImageIcon.setImageBitmap(ImageLoader.loadImage(imagePath));
+        }
+    }
+    public  boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            return true;
         }
     }
 }

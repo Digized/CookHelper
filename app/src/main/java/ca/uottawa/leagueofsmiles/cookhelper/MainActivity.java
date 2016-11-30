@@ -1,12 +1,17 @@
 package ca.uottawa.leagueofsmiles.cookhelper;
 
+import android.Manifest;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -54,6 +59,8 @@ public class MainActivity extends BaseActivity {
         getComponent().inject(this);
         setTitle(main_screen_title);
 
+
+
         fabAddNewRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +96,7 @@ public class MainActivity extends BaseActivity {
                     }
                 });
         recipeList.setAdapter(recipeAdapter);
+        isStoragePermissionGranted();
     }
 
     @Override
@@ -125,5 +133,21 @@ public class MainActivity extends BaseActivity {
                 break;
         }
         return true;
+    }
+
+
+    public  boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            return true;
+        }
     }
 }
