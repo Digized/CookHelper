@@ -95,7 +95,8 @@ public class ViewRecipeActivity extends BaseActivity {
             imgRecipe.setImageResource(R.drawable.ic_book_black_24dp);
         }
         title.setText(recipe.getTitle());
-        recipeStats.setText("Prepare Time: "+recipe.getCookTime()+" minutes\nCalories: "+recipe.getCalories()); //will fix this later
+        recipeStats.setText("Prepare Time: "+recipe.getCookTime()+" minutes\nCook Time: " +recipe.getCookTime()+" minutes\nCalories: "+recipe.getCalories()+ "\nCatagory: "+//will fix this later
+        (getResources().getStringArray(R.array.categories_array))[recipe.getCategory()]+"\nMeal Type: "+ (getResources().getStringArray(R.array.types_array))[recipe.getType()]);
         ingredients.setText(recipe.getIngredients());
         steps.setText(recipe.getSteps());
     }
