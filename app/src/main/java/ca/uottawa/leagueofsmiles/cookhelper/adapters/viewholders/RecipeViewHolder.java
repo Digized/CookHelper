@@ -29,7 +29,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Recipe recipe) {
-        ImageLoader.loadImageOnto(recipe.getImagePath(), R.drawable.empty_image, imgRecipe);
+        ImageLoader.loadImageOnto(recipe.getImagePath(), R.drawable.ic_book_black_24dp, imgRecipe);
         txtRecipeName.setText(recipe.getTitle());
     }
 }
