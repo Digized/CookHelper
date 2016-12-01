@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -207,14 +208,13 @@ Recipe recipe;
 
     }
     public void OnbtnImageIconClick(View view){
-        if(isStoragePermissionGranted()) {
-            Toast.makeText(this, "ADADSAD", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, isStoragePermissionGranted()+"", Toast.LENGTH_SHORT).show();
             Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             pickIntent.setType("image/*");
 
 
-            startActivityForResult(pickIntent, 0);
-        }
+           // startActivityForResult(pickIntent, 0);
+
     }
 
     @Override
@@ -229,13 +229,15 @@ Recipe recipe;
             btnImageIcon.setImageBitmap(ImageLoader.loadImage(imagePath));
         }
     }
-    public  boolean isStoragePermissionGranted() {
+    public boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
+            Toast.makeText(this, "HELLO", Toast.LENGTH_SHORT).show();
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
+
                 return true;
             } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
                 return false;
             }
         }
