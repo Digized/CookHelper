@@ -96,7 +96,7 @@ public class ViewRecipeActivity extends BaseActivity {
         }
         title.setText(recipe.getTitle());
         recipeStats.setText("Prepare Time: "+recipe.getCookTime()+" minutes\nCook Time: " +recipe.getCookTime()+" minutes\nCalories: "+recipe.getCalories()+ "\nCatagory: "+//will fix this later
-        (getResources().getStringArray(R.array.categories_array))[recipe.getCategory()]+"\nMeal Type: "+ (getResources().getStringArray(R.array.types_array))[recipe.getType()]);
+        recipe.getCategory()+"\nMeal Type: "+ recipe.getType());
         ingredients.setText(recipe.getIngredients());
         steps.setText(recipe.getSteps());
     }

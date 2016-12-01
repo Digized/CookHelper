@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity {
                     }
                 });
         recipeList.setAdapter(recipeAdapter);
-        isStoragePermissionGranted();
+        //isStoragePermissionGranted();
     }
 
     @Override

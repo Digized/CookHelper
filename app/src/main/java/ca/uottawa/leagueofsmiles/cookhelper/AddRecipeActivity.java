@@ -2,6 +2,7 @@ package ca.uottawa.leagueofsmiles.cookhelper;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -11,10 +12,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -67,15 +70,61 @@ Recipe recipe;
         ButterKnife.bind(this);
         getComponent().inject(this);
 
-        ArrayAdapter<CharSequence> categoryAdapter = ArrayAdapter.createFromResource(this,
-                R.array.categories_array, android.R.layout.simple_spinner_item);
-        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Recipe.categories());
         spinCategory.setAdapter(categoryAdapter);
+        spinCategory.setSelection(1);
+        spinCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0){
+                    final EditText editText=new EditText(getContext());
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Add new Category")
+                            .setView(editText)
+                            .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    spinCategory.setSelection(Recipe.AddCategory(editText.getText().toString()));
+                                }
+                            })
+                            .setNegativeButton(android.R.string.cancel, null)
+                            .show();
+                }
+            }
 
-        ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this,
-                R.array.types_array, android.R.layout.simple_spinner_item);
-        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,Recipe.types());
         spinType.setAdapter(typeAdapter);
+        spinType.setSelection(1);
+        spinType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0){
+                    final EditText editText=new EditText(getContext());
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Add new Meal Type")
+                            .setView(editText)
+                            .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    spinType.setSelection(Recipe.AddType(editText.getText().toString()));
+                                }
+                            })
+                            .setNegativeButton(android.R.string.cancel, null)
+                            .show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         Intent intent=getIntent();
         if (intent.hasExtra(Constants.RECIPE_ID)){
@@ -88,8 +137,8 @@ Recipe recipe;
             editPrepTime.setText(String.valueOf(recipe.getPrepTime()));
             editIngredients.setText(recipe.getIngredients());
             editSteps.setText(recipe.getSteps());
-            spinCategory.setSelection(recipe.getCategory());
-            spinType.setSelection(recipe.getType());
+            spinCategory.setSelection(Recipe.categories().indexOf(recipe.getCategory()));
+            spinType.setSelection(Recipe.types().indexOf(recipe.getType()));
             imagePath=recipe.getImagePath();
             btnImageIcon.setImageBitmap(ImageLoader.loadImage(imagePath));
 
@@ -194,4 +243,6 @@ Recipe recipe;
             return true;
         }
     }
+
+
 }

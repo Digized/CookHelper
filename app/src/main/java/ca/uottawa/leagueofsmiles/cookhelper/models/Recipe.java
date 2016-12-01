@@ -2,6 +2,9 @@ package ca.uottawa.leagueofsmiles.cookhelper.models;
 
 import com.orm.dsl.Table;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ca.uottawa.leagueofsmiles.cookhelper.Constants;
 
 /**
@@ -13,7 +16,27 @@ import ca.uottawa.leagueofsmiles.cookhelper.Constants;
  */
 @Table
 public class Recipe {
-    public static Long ids=0L;
+    private static Long ids=0L;
+    private static List<String> categories=new ArrayList<String>(){
+        {
+            add("New Category");
+            add("Italian");
+            add("Spanish");
+            add("Indian");
+            add("Jamaican");
+            add("American");
+            add("Canadian");
+            add("French");
+        }
+    };
+    private static List<String> types=new ArrayList<String>(){
+        {
+            add("New Meal Type");
+            add("Appetizer");
+            add("Dessert");
+            add("Meal");
+        }
+    };
     private Long id = null;
 
     private String imagePath;
@@ -21,8 +44,8 @@ public class Recipe {
     private int calories;
     private int cookTime; //in minutes
     private int prepTime;
-    private int category;
-    private int type;
+    private String category;
+    private String type;
     private String ingredients;
     private String steps;
 
@@ -39,8 +62,8 @@ public class Recipe {
         this.prepTime=prepTime;
         this.ingredients=ingredients;
         this.steps=steps;
-        this.category=category;
-        this.type=type;
+        this.category=categories.get(category);
+        this.type=types.get(type);
         this.imagePath=imagePath;
 	}
     public Recipe(long id,String title, int calories,int prepTime, int cookTime, String ingredients, String steps, int category, int type,String imagePath){
@@ -51,8 +74,8 @@ public class Recipe {
         this.prepTime=prepTime;
         this.ingredients=ingredients;
         this.steps=steps;
-        this.category=category;
-        this.type=type;
+        this.category=categories.get(category);
+        this.type=types.get(type);
         this.imagePath=imagePath;
     }
 
@@ -95,9 +118,9 @@ public class Recipe {
         return imagePath;
     }
 
-    public int getCategory() {return category;}
+    public String getCategory() {return category;}
 
-    public int getType() { return type; }
+    public String getType() { return type; }
 
     public int getPrepTime() {
         return prepTime;
@@ -108,4 +131,34 @@ public class Recipe {
         return null;
     }
 
+    public static int AddCategory(String category){
+        for(String cat:categories){
+            if(cat.compareToIgnoreCase(category)==0){
+                return categories.indexOf(category);
+            }
+        }
+        categories.add(category);
+        return categories.indexOf(category);
+    }
+    public static int AddType(String type){
+        for(String ty:types){
+            if(ty.compareToIgnoreCase(type)==0){
+                return types.indexOf(type);
+            }
+        }
+        types.add(type);
+        return types.indexOf(type);
+    }
+
+    public static List<String> categories() {
+        return categories;
+    }
+
+    public static List<String> types() {
+        return types;
+    }
+
+    public static Long Ids() {
+        return ids;
+    }
 }
