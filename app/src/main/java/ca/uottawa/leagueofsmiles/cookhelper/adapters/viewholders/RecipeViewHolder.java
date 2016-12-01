@@ -21,7 +21,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
     ImageView imgRecipe;
 
     @BindView(R.id.txtRecipeName)
-    TextView txtRecipeName;
+    TextView txtRecipeName;//hello
 
     public RecipeViewHolder(View itemView) {
         super(itemView);
