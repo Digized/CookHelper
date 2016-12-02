@@ -1,17 +1,12 @@
 package ca.uottawa.leagueofsmiles.cookhelper;
 
-import android.Manifest;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,7 +26,7 @@ import ca.uottawa.leagueofsmiles.cookhelper.data.Repository;
 import ca.uottawa.leagueofsmiles.cookhelper.models.Recipe;
 import ca.uottawa.leagueofsmiles.cookhelper.views.RecipeRecyclerView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements SearchView.OnQueryTextListener{
 
     @Inject
     Repository mRepository;
@@ -58,8 +53,6 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
         getComponent().inject(this);
         setTitle(main_screen_title);
-
-
 
         fabAddNewRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +89,6 @@ public class MainActivity extends BaseActivity {
                     }
                 });
         recipeList.setAdapter(recipeAdapter);
-        isStoragePermissionGranted();
     }
 
     @Override
@@ -116,6 +108,7 @@ public class MainActivity extends BaseActivity {
         SearchManager searchManager=(SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView=(SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false);
 
         return true;
     }
@@ -135,19 +128,13 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
 
-    public  boolean isStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                return true;
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                return false;
-            }
-        }
-        else { //permission is automatically granted on sdk<23 upon installation
-            return true;
-        }
+    @Override
+    public boolean onQueryTextChange(String s) {
+        return false;
     }
 }
