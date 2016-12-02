@@ -16,4 +16,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+    <ca.uottawa.leagueofsmiles.cookhelper.views.RecipeRecyclerView
+        android:id="@+id/recipeList"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
 </RelativeLayout>

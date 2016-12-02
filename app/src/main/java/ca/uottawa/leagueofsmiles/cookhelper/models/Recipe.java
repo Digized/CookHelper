@@ -69,18 +69,6 @@ public class Recipe {
         this.type=types.get(type);
         this.imagePath=imagePath;
 	}
-    public Recipe(String title, int calories,int prepTime, int cookTime, String ingredients, String steps, String category, String type,String imagePath){
-        this.id=ids++;
-        this.title = title;
-        this.calories=calories;
-        this.cookTime = cookTime;
-        this.prepTime=prepTime;
-        this.ingredients=ingredients;
-        this.steps=steps;
-        this.category=category;
-        this.type=type;
-        this.imagePath=imagePath;
-    }
     public Recipe(long id,String title, int calories,int prepTime, int cookTime, String ingredients, String steps, int category, int type,String imagePath){
         this.id=id;
         this.title = title;

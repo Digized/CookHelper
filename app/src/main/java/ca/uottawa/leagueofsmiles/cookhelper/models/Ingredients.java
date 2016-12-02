@@ -14,6 +14,7 @@ public class Ingredients {
     public Ingredients(String ingridentname,Recipe recipe){
         recipes=new ArrayList<Recipe>();
         this.ingredient=ingridentname;
+        add(recipe);
     }
     public void add(Recipe recipe){
         recipes.add(recipe);
@@ -37,4 +38,12 @@ public class Ingredients {
         return false;
     }
 
+    @Override
+    public String toString() {
+        String s="";
+        for (Recipe rec:recipes ) {
+            s=s+rec.getTitle();
+        }
+        return s;
+    }
 }
