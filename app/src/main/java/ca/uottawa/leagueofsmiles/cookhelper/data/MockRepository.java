@@ -102,7 +102,7 @@ public class MockRepository implements Repository {
                 .setCalories(180)
                 .setPrepTime(15)
                 .setCookTime(25)
-                .setIngredients(new String[]{"Flour","salt", "baking powder","Sugar","Eggs","Milk","vanilla essence"})
+                .setIngredients(new String[]{"Flour","salt", "baking powder","Sugar","Egg","Milk","vanilla essence"})
                 .setSteps("preheat oven to 375f or 190c; line muffin cups with papers.\n" +
                         "cream butter and sugar till light and fluffy. beat in eggs one at a time.\n" +
                         "add flour (mixed with baking powder and salt) alternating with milk beat well; stir in vanilla.\n" +

@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import ca.uottawa.leagueofsmiles.cookhelper.AddRecipeActivity;
 import ca.uottawa.leagueofsmiles.cookhelper.MainActivity;
+import ca.uottawa.leagueofsmiles.cookhelper.SearchableActivity;
 import ca.uottawa.leagueofsmiles.cookhelper.ViewRecipeActivity;
 import dagger.Component;
 
@@ -16,4 +17,5 @@ public interface ApplicationComponent {
     void inject(MainActivity activity);
     void inject(ViewRecipeActivity viewRecipeActivity);
     void inject(AddRecipeActivity addRecipeActivity);
+    void inject(SearchableActivity searchableActivity);
 }

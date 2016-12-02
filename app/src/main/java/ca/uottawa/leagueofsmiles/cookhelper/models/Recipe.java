@@ -17,7 +17,7 @@ import ca.uottawa.leagueofsmiles.cookhelper.Constants;
 @Table
 public class Recipe {
     public static Long ids=0L;
-    private static List<Ingredients> ingredientsList=new ArrayList<>();
+    private static List<Ingredients> ingredientsList=new ArrayList<Ingredients>();
     private Long id = null;
 
     private String imagePath;
@@ -42,6 +42,7 @@ public class Recipe {
         this.cookTime = cookTime;
         this.prepTime=prepTime;
         this.ingredients=ingredients;
+        storeIngredients(ingredients);
         this.steps=steps;
         this.category=category;
         this.type=type;
@@ -54,6 +55,7 @@ public class Recipe {
         this.cookTime = cookTime;
         this.prepTime=prepTime;
         this.ingredients=ingredients;
+        storeIngredients(ingredients);
         this.steps=steps;
         this.category=category;
         this.type=type;
