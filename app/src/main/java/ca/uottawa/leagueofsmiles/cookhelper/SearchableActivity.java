@@ -34,7 +34,6 @@ public class SearchableActivity extends BaseActivity {
 
     @Inject
     Repository mRepository;
-    Recipe recipe;
     RecipeAdapter recipeAdapter;
     @BindView(R.id.recipeList)
     RecipeRecyclerView recipeList;

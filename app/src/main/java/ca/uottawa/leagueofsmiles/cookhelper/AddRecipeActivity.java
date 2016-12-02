@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -256,6 +257,13 @@ Recipe recipe;
         }
         else { //permission is automatically granted on sdk<23 upon installation
             return true;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if((requestCode==1)&&(grantResults[0]==PackageManager.PERMISSION_GRANTED)){
+            Toast.makeText(this, "Granted", Toast.LENGTH_SHORT).show();
         }
     }
 }
