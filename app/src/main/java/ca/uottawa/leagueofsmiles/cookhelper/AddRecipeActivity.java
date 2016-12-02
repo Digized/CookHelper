@@ -90,7 +90,12 @@ Recipe recipe;
                                     spinCategory.setSelection(Recipe.addCategory(editText.getText().toString()));
                                 }
                             })
-                            .setNegativeButton(android.R.string.cancel,null)
+                            .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    spinCategory.setSelection(1);
+                                }
+                            })
                             .show();
                 }
             }
@@ -118,7 +123,12 @@ Recipe recipe;
                                     spinType.setSelection(Recipe.addType(editText.getText().toString()));
                                 }
                             })
-                            .setNegativeButton(android.R.string.cancel,null)
+                            .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    spinType.setSelection(1);
+                                }
+                            })
                             .show();
                 }
             }
@@ -191,8 +201,7 @@ Recipe recipe;
                             .setCategory(spinCategory.getSelectedItemPosition())
                             .setImagePath(imagePath)
                             .update(recipeID));
-                    Snackbar.make(findViewById(R.id.activity_main),"Recipe "+mRepository.getRecipe(recipeID).getTitle()+" updated",Snackbar.LENGTH_SHORT).show();
-                    //Toast.makeText(this, "Recipe Updated "+ mRepository.getRecipe(recipeID).getTitle(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Recipe Updated: "+ mRepository.getRecipe(recipeID).getTitle(), Toast.LENGTH_SHORT).show();
 
                 }
                 finish();
@@ -224,6 +233,10 @@ Recipe recipe;
 
     }
     public void OnbtnImageIconClick(View view){
+        startGallery();
+    }
+
+    private void startGallery(){
         if(isStoragePermissionGranted()) {
             Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             pickIntent.setType("image/*");
@@ -232,7 +245,6 @@ Recipe recipe;
             startActivityForResult(pickIntent, 0);
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if((requestCode==0)&&(resultCode==RESULT_OK)){
@@ -263,7 +275,7 @@ Recipe recipe;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if((requestCode==1)&&(grantResults[0]==PackageManager.PERMISSION_GRANTED)){
-            Toast.makeText(this, "Granted", Toast.LENGTH_SHORT).show();
+            startGallery();
         }
     }
 }
