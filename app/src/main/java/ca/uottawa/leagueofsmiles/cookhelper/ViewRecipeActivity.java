@@ -1,15 +1,16 @@
 package ca.uottawa.leagueofsmiles.cookhelper;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -69,8 +70,18 @@ public class ViewRecipeActivity extends BaseActivity {
                 startActivity(browserIntent);
                 break;
             case R.id.delete:
-                mRepository.deleteRecipe(recipeID);
-                finish();
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.dialog_delete_title)
+                        .setMessage(R.string.dialog_delete_message)
+                        .setPositiveButton(R.string.dialog_delete_confirm, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mRepository.deleteRecipe(recipeID);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel,null)
+                        .show();
                 break;
         }
         return true;
@@ -96,7 +107,7 @@ public class ViewRecipeActivity extends BaseActivity {
         }
         title.setText(recipe.getTitle());
         recipeStats.setText("Prepare Time: "+recipe.getCookTime()+" minutes\nCook Time: " +recipe.getCookTime()+" minutes\nCalories: "+recipe.getCalories()+ "\nCatagory: "+//will fix this later
-        (getResources().getStringArray(R.array.categories_array))[recipe.getCategory()]+"\nMeal Type: "+ (getResources().getStringArray(R.array.types_array))[recipe.getType()]);
+        recipe.getCategory()+"\nMeal Type: "+ recipe.getType());
         ingredients.setText(recipe.getIngredients());
         steps.setText(recipe.getSteps());
     }

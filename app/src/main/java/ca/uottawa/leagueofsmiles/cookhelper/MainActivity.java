@@ -12,7 +12,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -65,8 +64,6 @@ public class MainActivity extends BaseActivity implements SearchView.OnQueryText
                 new RecipeAdapterClickListener() {
                     @Override
                     public void onRecipeClicked(Recipe recipe, RecipeViewHolder viewHolder, int position) {
-                        Toast.makeText(MainActivity.this, recipe.getId()+"", Toast.LENGTH_SHORT).show();
-
                         Intent intent = new Intent(getContext(), ViewRecipeActivity.class);
                         intent.putExtra(Constants.RECIPE_ID, recipe.getId());
                         startActivity(intent);
