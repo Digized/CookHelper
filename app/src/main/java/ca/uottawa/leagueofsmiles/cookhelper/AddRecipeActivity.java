@@ -140,8 +140,11 @@ Recipe recipe;
             editSteps.setText(recipe.getSteps());
             spinCategory.setSelection(Recipe.categories().indexOf(recipe.getCategory()));
             spinType.setSelection(Recipe.types().indexOf(recipe.getType()));
-            imagePath=recipe.getImagePath();
-            btnImageIcon.setImageBitmap(ImageLoader.loadImage(imagePath));
+            imagePath=(recipe.getImagePath());
+            if(imagePath!="")
+                btnImageIcon.setImageBitmap(ImageLoader.loadImage(imagePath));
+            else
+                btnImageIcon.setImageResource(R.drawable.ic_book_black_24dp);
 
 
 
@@ -208,13 +211,11 @@ Recipe recipe;
 
     }
     public void OnbtnImageIconClick(View view){
-        Toast.makeText(this, isStoragePermissionGranted()+"", Toast.LENGTH_SHORT).show();
+        if(isStoragePermissionGranted()) {
             Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             pickIntent.setType("image/*");
-
-
-           // startActivityForResult(pickIntent, 0);
-
+            startActivityForResult(pickIntent, 0);
+        }
     }
 
     @Override
@@ -232,9 +233,7 @@ Recipe recipe;
     public boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
             Toast.makeText(this, "HELLO", Toast.LENGTH_SHORT).show();
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED) {
                 return true;
             } else {
                 ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
