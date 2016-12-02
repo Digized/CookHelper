@@ -20,6 +20,9 @@
     <string name="add_edit_recipe">Add/Edit Recipe</string>
     <string name="edit_click_of_the_recipe_you_want_to_edit_click_on_the_edit_icon_then_edit_anything_you_please_to_delete_a_recipe_just_click_on_the_garbage_icon">Edit: Click of the recipe you want to edit. Click on the edit icon, then edit anything you please. To delete a recipe, just click on the garbage icon.</string>
     <string name="editing_deleting_recipe">Editing/Deleting Recipe</string>
+    <string name="add_new_category">Add New Category</string>
+    <string name="add_new_type">Add New Type</string>
+    <string name="dialog_add_confirm">Add</string>
     <string-array name="categories_array">
         <item>Italian</item>
         <item>Spanish</item>

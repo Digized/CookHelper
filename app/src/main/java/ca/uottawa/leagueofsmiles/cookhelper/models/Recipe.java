@@ -16,8 +16,30 @@ import ca.uottawa.leagueofsmiles.cookhelper.Constants;
  */
 @Table
 public class Recipe {
-    public static Long ids=0L;
+    private static Long ids=1L;
     private static List<Ingredients> ingredientsList=new ArrayList<>();
+    private static List<String> categories=new ArrayList<String>(){
+        {
+            add("Add New Category");
+            add("Italian");
+            add("Spanish");
+            add("Indian");
+            add("Jamaican");
+            add("American");
+            add("Canadian");
+            add("French");
+
+        }
+    };
+    private static List<String> types=new ArrayList<String>(){
+        {
+            add("Add New Meal Type");
+            add("Appetizer");
+            add("Dessert");
+            add("Main Course");
+        }
+    };
+
     private Long id = null;
 
     private String imagePath;
@@ -25,8 +47,8 @@ public class Recipe {
     private int calories;
     private int cookTime; //in minutes
     private int prepTime;
-    private int category;
-    private int type;
+    private String category;
+    private String type;
     private String ingredients;
     private String steps;
 
@@ -43,12 +65,12 @@ public class Recipe {
         this.prepTime=prepTime;
         this.ingredients=ingredients;
         this.steps=steps;
-        this.category=category;
-        this.type=type;
+        this.category=categories.get(category);
+        this.type=types.get(type);
         this.imagePath=imagePath;
 	}
-    public Recipe(long id,String title, int calories,int prepTime, int cookTime, String ingredients, String steps, int category, int type,String imagePath){
-        this.id=id;
+    public Recipe(String title, int calories,int prepTime, int cookTime, String ingredients, String steps, String category, String type,String imagePath){
+        this.id=ids++;
         this.title = title;
         this.calories=calories;
         this.cookTime = cookTime;
@@ -57,6 +79,18 @@ public class Recipe {
         this.steps=steps;
         this.category=category;
         this.type=type;
+        this.imagePath=imagePath;
+    }
+    public Recipe(long id,String title, int calories,int prepTime, int cookTime, String ingredients, String steps, int category, int type,String imagePath){
+        this.id=id;
+        this.title = title;
+        this.calories=calories;
+        this.cookTime = cookTime;
+        this.prepTime=prepTime;
+        this.ingredients=ingredients;
+        this.steps=steps;
+        this.category=categories.get(category);
+        this.type=types.get(type);
         this.imagePath=imagePath;
     }
 
@@ -86,7 +120,7 @@ public class Recipe {
         String[] mIngredients = ingredients.split(Constants.INGREDIANTS_DELIMITER);
 
         for (int i=0;i<mIngredients.length;i++) {
-            s = s +(i+1)+") "+mIngredients[i] + "\n";
+            s =s+mIngredients[i] + "\n";
         }
         return s;
     }
@@ -99,9 +133,9 @@ public class Recipe {
         return imagePath;
     }
 
-    public int getCategory() {return category;}
+    public String getCategory() {return category;}
 
-    public int getType() { return type; }
+    public String getType() { return type; }
 
     public int getPrepTime() {
         return prepTime;
@@ -130,4 +164,27 @@ public class Recipe {
         return ingredientsList;
     }
 
+    public static List<String> Categories() {
+        return categories;
+    }
+    public static List<String> Types() {
+        return types;
+    }
+
+    public static int addCategory(String newCategory){
+        for (String category: categories){
+            if (category.equalsIgnoreCase(newCategory))
+                return categories.indexOf(newCategory);
+        }
+        categories.add(newCategory);
+        return categories.indexOf(newCategory);
+    }
+    public static int addType (String newType){
+        for (String type: types){
+            if (type.equalsIgnoreCase(newType))
+                return types.indexOf(newType);
+        }
+        types.add(newType);
+        return types.indexOf(newType);
+    }
 }
