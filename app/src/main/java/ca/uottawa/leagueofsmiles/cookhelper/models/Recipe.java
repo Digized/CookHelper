@@ -64,6 +64,7 @@ public class Recipe {
         this.cookTime = cookTime;
         this.prepTime=prepTime;
         this.ingredients=ingredients;
+        storeIngredients(ingredients);
         this.steps=steps;
         this.category=categories.get(category);
         this.type=types.get(type);
@@ -76,6 +77,7 @@ public class Recipe {
         this.cookTime = cookTime;
         this.prepTime=prepTime;
         this.ingredients=ingredients;
+        storeIngredients(ingredients);
         this.steps=steps;
         this.category=categories.get(category);
         this.type=types.get(type);
