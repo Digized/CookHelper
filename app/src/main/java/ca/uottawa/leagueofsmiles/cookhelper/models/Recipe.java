@@ -2,6 +2,9 @@ package ca.uottawa.leagueofsmiles.cookhelper.models;
 
 import com.orm.dsl.Table;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ca.uottawa.leagueofsmiles.cookhelper.Constants;
 
 /**
@@ -14,6 +17,7 @@ import ca.uottawa.leagueofsmiles.cookhelper.Constants;
 @Table
 public class Recipe {
     public static Long ids=0L;
+    private static List<Ingredients> ingredientsList=new ArrayList<>();
     private Long id = null;
 
     private String imagePath;
@@ -106,6 +110,24 @@ public class Recipe {
     public RecipeBuilder toNewBuilder() {
         //TODO implement
         return null;
+    }
+    private void storeIngredients(String ingredients){
+        String[] ingridient=ingredients.trim().split(Constants.INGREDIANTS_DELIMITER);
+        for(String ing: ingridient){
+            storeIngredient(ing);
+        }
+
+    }
+    private void storeIngredient(String ingredient){
+        for(Ingredients ingredients1:ingredientsList){
+            if(ingredients1.getIngredient().equalsIgnoreCase(ingredient)){
+                ingredients1.add(this);
+                return;
+            }
+        }ingredientsList.add(new Ingredients(ingredient,this));
+    }
+    public static List<Ingredients> ingredientList(){
+        return ingredientsList;
     }
 
 }
