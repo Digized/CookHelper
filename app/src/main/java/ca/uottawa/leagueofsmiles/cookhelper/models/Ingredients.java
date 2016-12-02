@@ -14,6 +14,7 @@ public class Ingredients {
     public Ingredients(String ingridentname,Recipe recipe){
         recipes=new ArrayList<Recipe>();
         this.ingredient=ingridentname;
+        add(recipe);
     }
     public void add(Recipe recipe){
         recipes.add(recipe);
