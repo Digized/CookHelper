@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/search"
-        android:title="@string/search_hint"
+
+    <item
+        android:id="@+id/search"
         android:icon="@drawable/ic_search_white_24dp"
-        app:showAsAction="collapseActionView|ifRoom"
-        app:actionViewClass="android.widget.SearchView" />
-    <item android:id="@+id/about"
-        android:title="@string/about"/>
-    <item android:id="@+id/help"
-        android:title="@string/help"/>
+        android:title="@string/search_hint"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom" />
+
+    <item
+        android:id="@+id/recipe_type"
+        android:title="Type"
+        app:showAsAction="ifRoom">
+        <menu></menu>
+    </item>
+
+    <item
+        android:id="@+id/recipe_category"
+        android:title="Category"
+        app:showAsAction="ifRoom">
+        <menu></menu>
+    </item>
+
+    <item
+        android:id="@+id/about"
+        android:title="@string/about" />
+    <item
+        android:id="@+id/help"
+        android:title="@string/help" />
 </menu>
