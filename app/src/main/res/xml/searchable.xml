@@ -3,5 +3,8 @@
     android:label="@string/app_name"
     android:hint="@string/search_hint"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
+    android:searchSuggestAuthority="ca.uottawa.leagueofsmiles.cookhelper"
+    android:searchSuggestSelection=" ?">
 </searchable>

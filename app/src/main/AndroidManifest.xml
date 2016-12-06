@@ -23,7 +23,9 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="ca.uottawa" />
-
+        <provider
+            android:authorities="ca.uottawa.leagueofsmiles.cookhelper"
+            android:name=".utils.MySuggestionProvider"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
