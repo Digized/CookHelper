@@ -10,7 +10,6 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -116,19 +115,20 @@ public class MainActivity extends BaseActivity implements SearchView.OnQueryText
         SearchView searchView= (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search));
         searchView.setOnQueryTextListener(this);
         //Types
-        SubMenu typeSubMenu = menu.findItem(R.id.recipe_type).getSubMenu();
+        /*SubMenu typeSubMenu = menu.findItem(R.id.recipe_type).getSubMenu();
         typeSubMenu.setGroupCheckable(1, true, true);
 
         for(String type: Recipe.Types()) {
             typeSubMenu.add(type);
-        }
+        }*/
         //Categories
-        SubMenu categorySubMenu = menu.findItem(R.id.recipe_category).getSubMenu();
+        /*SubMenu categorySubMenu = menu.findItem(R.id.recipe_category).getSubMenu();
         categorySubMenu.setGroupCheckable(2, true, true);
 
         for(String category: Recipe.Categories()) {
             categorySubMenu.add(category);
         }
+        */
 
         return true;
     }

@@ -8,7 +8,7 @@
         android:title="@string/search_hint"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="collapseActionView|ifRoom" />
-
+<!--
     <item
         android:id="@+id/recipe_type"
         android:title="Type"
@@ -22,7 +22,7 @@
         app:showAsAction="ifRoom">
         <menu></menu>
     </item>
-
+-->
     <item
         android:id="@+id/about"
         android:title="@string/about" />
