@@ -1,98 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_about_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/activity_about_page"
+    android:background="@color/white"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:weightSum="1">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1"
-        tools:ignore="UselessParent"
-        android:id="@+id/informationContainer">
+        android:layout_height="1dp"
+        android:layout_weight="0.06" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about"
-            android:ems="10"
-            android:id="@+id/about"
-            android:layout_weight="0.06"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="normal|bold" />
+    <TextView
+        android:id="@+id/applicationDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="@string/application_description"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_weight="0.06"
-            android:layout_height="1dp" />
+    <TextView
+        android:id="@+id/applicationDescritionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.09"
+        android:text="@string/the_cookhelper_application_provides_many_good_recipe_services_it_provides_verity_of_unique_dishes_to_prepare_and_some_nutrition_facts_about_them"
+        android:textColorLink="?attr/editTextColor"
+        android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/application_description"
-            android:ems="10"
-            android:id="@+id/applicationDescription"
-            android:textStyle="normal|bold"
-            android:textAllCaps="true"
-            android:textSize="18sp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
 
-        <TextView
-            android:text="@string/the_cookhelper_application_provides_many_good_recipe_services_it_provides_verity_of_unique_dishes_to_prepare_and_some_nutrition_facts_about_them"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/applicationDescritionText"
-            android:layout_weight="0.09"
-            android:textColorLink="?attr/editTextColor"
-            android:textSize="16sp" />
+    <TextView
+        android:id="@+id/aboutUs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="@string/about_us"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
+    <TextView
+        android:id="@+id/aboutUsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.08"
+        android:text="@string/cookhelper_is_designed_by_the_group_name_as_league_of_smiles_created_by_four_individuel_university_of_ottawa_students" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_us"
-            android:ems="10"
-            android:id="@+id/aboutUs"
-            android:textStyle="normal|bold"
-            android:textAllCaps="true"
-            android:textSize="18sp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
 
-        <TextView
-            android:text="@string/cookhelper_is_designed_by_the_group_name_as_league_of_smiles_created_by_four_individuel_university_of_ottawa_students"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/aboutUsText"
-            android:layout_weight="0.08" />
+    <TextView
+        android:id="@+id/Contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="@string/contact"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/contact"
-            android:ems="10"
-            android:id="@+id/Contact"
-            android:textStyle="normal|bold"
-            android:textAllCaps="true"
-            android:textSize="18sp" />
-
-        <TextView
-            android:text="@string/aabdu007_uottawa_ca"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/GroupEmail" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/GroupEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/aabdu007_uottawa_ca" />
 
 </LinearLayout>
