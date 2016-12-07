@@ -163,8 +163,11 @@ public class MainActivity extends BaseActivity implements SearchView.OnQueryText
 
     protected List<Recipe> doMySearch(String find) {
         String[] queryItems = find.split(" ");
-
         List<Recipe> returnRecipes = new LinkedList<>();
+
+        //TODO IMPLEMENT THE SEARCH HERE
+        
+        /*
 
         if (queryItems.length < 3) {
             returnRecipes = getRecipeFilteredBy(queryItems[0]);
@@ -201,7 +204,7 @@ public class MainActivity extends BaseActivity implements SearchView.OnQueryText
             }
         } else {//Freak out
         }
-
+        */
         return returnRecipes;
     }
 
