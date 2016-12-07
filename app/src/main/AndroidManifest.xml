@@ -29,22 +29,22 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data android:name="android.app.default_searchable"
+            <meta-data
+                android:name="android.app.default_searchable"
                 android:value=".SearchableActivity" />
         </activity>
         <activity android:name=".ViewRecipeActivity" />
         <activity
             android:name=".AddRecipeActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".AboutPageActivity" />
-        <activity android:name=".HelpPageActivity" />
-        <activity android:name=".SearchableActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-        </activity>
+        <activity
+            android:name=".AboutPageActivity"
+            android:label="@string/about"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".HelpPageActivity"
+            android:label="@string/help"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

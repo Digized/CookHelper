@@ -1,17 +1,21 @@
 package ca.uottawa.leagueofsmiles.cookhelper;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -43,6 +47,7 @@ public class MainActivity extends BaseActivity implements SearchView.OnQueryText
     @BindString(R.string.dialog_delete_title) String dialog_delete_title;
     @BindString(R.string.dialog_delete_message) String dialog_delete_message;
     @BindString(R.string.dialog_delete_confirm) String dialog_delete_confirm;
+    private String query = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,17 +100,35 @@ public class MainActivity extends BaseActivity implements SearchView.OnQueryText
     }
 
     private void updateRecipeList() {
-        recipeAdapter.setRecipes(mRepository.getAllRecipes());
+        if(query.length() == 0) {
+            recipeAdapter.setRecipes(mRepository.getAllRecipes());
+        }
+        else {
+            recipeAdapter.setRecipes(doMySearch(query));
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
-        SearchManager searchManager=(SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView=(SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(false);
+        SearchView searchView= (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search));
+        searchView.setOnQueryTextListener(this);
+        //Types
+        /*SubMenu typeSubMenu = menu.findItem(R.id.recipe_type).getSubMenu();
+        typeSubMenu.setGroupCheckable(1, true, true);
+
+        for(String type: Recipe.Types()) {
+            typeSubMenu.add(type);
+        }*/
+        //Categories
+        /*SubMenu categorySubMenu = menu.findItem(R.id.recipe_category).getSubMenu();
+        categorySubMenu.setGroupCheckable(2, true, true);
+
+        for(String category: Recipe.Categories()) {
+            categorySubMenu.add(category);
+        }
+        */
 
         return true;
     }
@@ -127,11 +150,71 @@ public class MainActivity extends BaseActivity implements SearchView.OnQueryText
 
     @Override
     public boolean onQueryTextSubmit(String s) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean onQueryTextChange(String s) {
-        return false;
+        query = s;
+        updateRecipeList();
+        return true;
     }
+
+
+    protected List<Recipe> doMySearch(String find) {
+        String[] queryItems = find.split(" ");
+
+        List<Recipe> returnRecipes = new LinkedList<>();
+
+        if (queryItems.length < 3) {
+            returnRecipes = getRecipeFilteredBy(queryItems[0]);
+        } else if (queryItems.length == 3) {
+            List<Recipe> query1 = getRecipeFilteredBy(queryItems[0]);
+            List<Recipe> query2 = getRecipeFilteredBy(queryItems[2]);
+
+            String operator = queryItems[1].toLowerCase();
+            switch (operator) {
+                case "and":
+                    for (Recipe recipe : query1) {
+                        if (query2.contains(recipe)) {
+                            returnRecipes.add(recipe);
+                        }
+                    }
+                    break;
+                case "or":
+                    for (Recipe recipe : query1) {
+                        returnRecipes.add(recipe);
+                    }
+                    for (Recipe recipe2 : query2) {
+                        if (!query1.contains(recipe2)) {
+                            returnRecipes.add(recipe2);
+                        }
+                    }
+                    break;
+                case "not":
+                    for (Recipe recipe : query1) {
+                        if (!query2.contains(recipe)) {
+                            returnRecipes.add(recipe);
+                        }
+                    }
+                    break;
+            }
+        } else {//Freak out
+        }
+
+        return returnRecipes;
+    }
+
+    public List<Recipe> getRecipeFilteredBy(String filterBy) {
+        List<Recipe> recipes = new ArrayList<>(mRepository.getAllRecipes());
+        Iterator<Recipe> iterator = recipes.iterator();
+        if (iterator.hasNext()) {
+            Recipe recipe = iterator.next();
+            if (!recipe.getIngredients().toString().contains(filterBy)) {
+                iterator.remove();
+            }
+        }
+        return recipes;
+    }
+
 }

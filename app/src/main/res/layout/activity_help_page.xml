@@ -1,142 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_help_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context="ca.uottawa.leagueofsmiles.cookhelper.HelpPageActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="UselessParent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
         <TextView
-            android:text="HELP PAGE"
+            android:id="@+id/findingRecipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:textAlignment="center"
-            android:textSize="20sp"
+            android:lineSpacingExtra="12sp"
+            android:text="@string/finding_recipe"
+            android:textSize="18sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="12dp" />
+
+        <TextView
+            android:id="@+id/findingRecipeInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="To find a recipe, either type the recipe name in the search bar or look through the list of recipe provided. "
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:id="@+id/findRecipeImage"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:contentDescription="findingRecipe"
+            app:srcCompat="@drawable/findingrecipe"
             tools:ignore="HardcodedText" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_above="@+id/scrollView2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            tools:ignore="ObsoleteLayoutParam,UnknownId" />
+            android:layout_height="10dp" />
 
-        <ScrollView
+        <TextView
+            android:id="@+id/addRecipe"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView"
-            tools:ignore="ObsoleteLayoutParam">
+            android:layout_height="wrap_content"
+            android:text="@string/add_edit_recipe"
+            android:textSize="18sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="18dp" />
 
-                <TextView
-                    android:text="@string/finding_recipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/findingRecipe"
-                    android:textSize="18sp"
-                    android:lineSpacingExtra="12sp" />
+        <TextView
+            android:id="@+id/AddRecipeInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Click on the plus sign icon to add a new recipe."
+            tools:ignore="HardcodedText" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp" />
+        <ImageView
+            android:id="@+id/addRecipeImage"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            app:srcCompat="@drawable/addingrecipe"
+            tools:ignore="ContentDescription" />
 
-                <TextView
-                    android:text="To find a recipe, either type the recipe name in the search bar or look through the list of recipe provided. "
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/findingRecipeInfo"
-                    tools:ignore="HardcodedText" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="13dp" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    app:srcCompat="@drawable/findingrecipe"
-                    android:id="@+id/findRecipeImage"
-                    android:contentDescription="findingRecipe"
-                    tools:ignore="HardcodedText"
-                    android:layout_height="500dp" />
+        <TextView
+            android:id="@+id/editDeleteRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/editing_deleting_recipe"
+            android:textSize="18sp" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
 
-                <TextView
-                    android:text="@string/add_edit_recipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/addRecipe"
-                    android:textSize="18sp" />
+        <TextView
+            android:id="@+id/editingRecipeInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_click_of_the_recipe_you_want_to_edit_click_on_the_edit_icon_then_edit_anything_you_please_to_delete_a_recipe_just_click_on_the_garbage_icon" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="18dp" />
+        <ImageView
+            android:id="@+id/editAndDeleteImage"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            app:srcCompat="@drawable/editanddelete"
+            tools:ignore="ContentDescription" />
 
-                <TextView
-                    android:text="Click on the plus sign icon to add a new recipe."
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/AddRecipeInfo"
-                    tools:ignore="HardcodedText" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    app:srcCompat="@drawable/addingrecipe"
-                    android:id="@+id/addRecipeImage"
-                    tools:ignore="ContentDescription"
-                    android:layout_height="500dp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="13dp" />
-
-                <TextView
-                    android:text="@string/editing_deleting_recipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editDeleteRecipe"
-                    android:textSize="18sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp" />
-
-                <TextView
-                    android:text="@string/edit_click_of_the_recipe_you_want_to_edit_click_on_the_edit_icon_then_edit_anything_you_please_to_delete_a_recipe_just_click_on_the_garbage_icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editingRecipeInfo" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    app:srcCompat="@drawable/editanddelete"
-                    android:id="@+id/editAndDeleteImage"
-                    tools:ignore="ContentDescription"
-                    android:layout_height="500dp" />
-
-            </LinearLayout>
-        </ScrollView>
     </LinearLayout>
-
-</RelativeLayout>
+</ScrollView>
